@@ -5,7 +5,7 @@ IPhoneNumpad creates a copy of the IPhone pin numpad where you have to enter X n
 <div class="index-password" id="iphoneNumpad"></div>
 ```
 ```javascript
-new IPhoneNumpad('iphoneNumpad',{
+new IPhoneNumpad('iphoneNumpad', {
                   'doublemd5password': 'ec6a6536ca304edf844d1d248a4f08dc',
                   'length': '4',
                   'color': 'white',
