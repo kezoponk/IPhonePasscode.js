@@ -2,15 +2,14 @@
  * @author Albin Eriksson, https://github.com/kezoponk
  * @license MIT, https://opensource.org/licenses/MIT
  */
-
 var numpadCountClick = 0,
     numpadEnteredPassword = "",
     numpadDoubleMd5Password,
     numpadColor,
-    numpadLength;
+    numpadLength,
+    numpadCorrectRedirect;
 
 class IPhoneNumpad {
-
   appendButtons(div, numpad) {
     const buttonStyle = 'height:22.3%;'
                         +'width:27.3%;'
@@ -19,13 +18,15 @@ class IPhoneNumpad {
                         +'margin-bottom:4.35%;'
                         +'border-radius:100%;'
                         +'border:none;'
+                        +'opacity:0;'
                         +'position:relative';
 
+    // Append 10 buttons + 2 invisible
     for(var i = 0; i < 12; i++) {
-      let invisibleButton = document.createElement('button');
+      let numpadButton = document.createElement('button');
 
       // Default buttons
-      let background = 'transparent',
+      let background = 'white',
           margin = '9%';
 
       // Remove margin for the third button in row
@@ -38,17 +39,19 @@ class IPhoneNumpad {
         background = 'transparent';
       } else if(i == 10) {
         // If button value is '0'
-        invisibleButton.setAttribute("onclick", "numpad(0)");
+        numpadButton.setAttribute("onclick", "numpad(this)");
+        numpadButton.setAttribute("value", "0")
       } else {
         // Increase i by 1 since i have to start on 0
-        invisibleButton.setAttribute("onclick", "numpad(" + (i+1) + ")");
+        numpadButton.setAttribute("onclick", "numpad(this)");
+        numpadButton.setAttribute("value", i+1)
       }
 
       // Set style depending on button position
-      invisibleButton.setAttribute('style', 'background:'+background+';'
+      numpadButton.setAttribute('style', 'background:'+background+';'
                                                          +'margin-right:'+margin+';'
                                                          +buttonStyle);
-      numpad.appendChild(invisibleButton);
+      numpad.appendChild(numpadButton);
     }
     div.appendChild(numpad);
   }
@@ -107,6 +110,7 @@ class IPhoneNumpad {
     numpadDoubleMd5Password = options.doublemd5password;
     numpadColor = options.color;
     numpadLength = options.length;
+    numpadCorrectRedirect = options.redirect;
 
     const div = document.getElementById(elementID);
 
@@ -175,17 +179,25 @@ function md5(inputString) {
     return rh(a)+rh(b)+rh(c)+rh(d);
 }
 
-function numpad(value) {
+function numpad(button) {
   numpadCountClick++;
-  numpadEnteredPassword += value;
-  
+  numpadEnteredPassword += button.value;
+
   // Fill pin width entered color
   document.getElementById('pin'+numpadCountClick).style.background = numpadColor;
 
+  // IPhone numpad press animation
+  button.style.opacity = "0.6";
+  button.style.transition = "opacity 100ms linear";
+  setTimeout(function() {
+    button.style.opacity = "0";
+    button.style.transition = "opacity 200ms linear";
+  }, 200);
+
   if(numpadLength == numpadCountClick) {
     if(md5(md5(numpadEnteredPassword)) == numpadDoubleMd5Password) {
-      // Success
-      
+      // Success, php is required to validate again to prevent cross site script
+      window.location = numpadCorrectRedirect+"?pass="+numpadEnteredPassword;
     } else {
       // Delay reset with 500ms
       setTimeout(function() {
@@ -195,7 +207,6 @@ function numpad(value) {
         }
         numpadCountClick = 0;
         numpadEnteredPassword = "";
-
       }, 500);
     }
   }
