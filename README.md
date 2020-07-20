@@ -1,12 +1,12 @@
 # IPhoneNumpad
 IPhoneNumpad creates very easily a copy of the IPhone pin numpad where you have to enter X numbers to login<br>
 MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a>
-> IPhoneNumpad('elementID'), {
-> 'doublemd5password': '1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc',
-> 'length': 'length of password'
-> 'color': 'color of buttons; white, black, blue'
-> 'redirect': 'php file to redirect to if password is right'
-> 'text': 'Text appearing above password pins, default; Enter Password'
+> IPhoneNumpad('elementID'), { <br>
+> 'doublemd5password': '1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc', <br>
+> 'length': 'length of password' <br>
+> 'color': 'color of buttons; white, black, blue' <br>
+> 'redirect': 'php file to redirect to if password is right' <br>
+> 'text': 'Text appearing above password pins, default; Enter Password' <br>
 ```html
 <div class="index-password" id="iphoneNumpad"></div>
 ```
