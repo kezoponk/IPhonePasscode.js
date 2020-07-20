@@ -8,6 +8,7 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
 > 'redirect': 'php file to redirect to if password is right' <br>
 > 'text': 'Text appearing above password pins, default; Enter Password' <br>
 <br>
+
 ```html
 <div class="index-password" id="iphoneNumpad"></div>
 ```
