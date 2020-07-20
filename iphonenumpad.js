@@ -4,10 +4,7 @@
  */
 var numpadCountClick = 0,
     numpadEnteredPassword = "",
-    numpadDoubleMd5Password,
-    numpadColor,
-    numpadLength,
-    numpadCorrectRedirect;
+    numpadOptions;
 
 class IPhoneNumpad {
   appendButtons(div, numpad) {
@@ -65,27 +62,28 @@ class IPhoneNumpad {
                                   +'justify-content: center;'
                                   +'flex-wrap: wrap;'
                                   +'position: relative;'
-                                  +'text-align:center;');
+                                  +'text-align:center');
 
     // Create title with entered text
     const text = document.createElement('h3');
-    text.setAttribute('style', 'width:100%;'
-                               +'font-size: 110%;'
+    let textSize = (numpadWidth * 0.7) / 2;
+    text.setAttribute('style', 'font-size:'+textSize+'%;'
+                               +'color:white;'
+                               +'width:100%;'
                                +'text-align:center;'
                                +'font-family: Arial, sans-serif;'
                                +'font-weight: lighter;'
-                               +'margin:0;'
-                               +'color:'+this.options.color);
+                               +'margin:0');
 
-    text.innerHTML = this.options.text;
+    text.innerHTML = numpadOptions.text;
     pinsDiv.appendChild(text);
 
-    for(var i = 0; i < this.options.length; i++) {
+    for(var i = 0; i < numpadOptions.length; i++) {
       let singlePin = document.createElement('div');
-      singlePin.setAttribute('style', 'border: 2px solid '+this.options.color+';'
+      singlePin.setAttribute('style', 'border: 2px solid white;'
                                       +'height:20%;'
                                       +'width: 4.5%;'
-                                      +'margin: 5px;'
+                                      +'margin: 7px;'
                                       +'margin-top:0;'
                                       +'border-radius: 100%;'
                                       +'background: transparent;'
@@ -101,18 +99,14 @@ class IPhoneNumpad {
    * @param {string} elementID - ID of div containing scrolling buttons
    * @param {Object} options - { password, length, color, text }
    */
+
   constructor(elementID, options) {
+    const div = document.getElementById(elementID);
     // Default value
     if (options.text == null) options.text = "Enter Password";
-    this.options = options;
 
-    // Make variables global
-    numpadDoubleMd5Password = options.doublemd5password;
-    numpadColor = options.color;
-    numpadLength = options.length;
-    numpadCorrectRedirect = options.redirect;
-
-    const div = document.getElementById(elementID);
+    // Make options global for button onclick
+    numpadOptions = options;
 
     // Init numpad that will exist in elementID div
     const numpad = document.createElement('div');
@@ -126,7 +120,7 @@ class IPhoneNumpad {
                                  +'width:'+numpadWidth+'px;');
 
     // Use numpad background and align buttons according to background
-    numpad.style.background = 'url(src/src/white_numpad.png) no-repeat top / 100% 100%';
+    numpad.style.background = 'url(src/src/'+options.color+'_numpad.png) no-repeat top / 100% 100%';
 
     this.appendEnteredPins(div, pinHeight, numpadWidth);
     this.appendButtons(div, numpad);
@@ -184,25 +178,25 @@ function numpad(button) {
   numpadEnteredPassword += button.value;
 
   // Fill pin width entered color
-  document.getElementById('pin'+numpadCountClick).style.background = numpadColor;
+  document.getElementById('pin'+numpadCountClick).style.background = "white";
 
   // IPhone numpad press animation
   button.style.opacity = "0.6";
-  button.style.transition = "opacity 100ms linear";
+  button.style.transition = "opacity 50ms linear";
   setTimeout(function() {
     button.style.opacity = "0";
     button.style.transition = "opacity 200ms linear";
-  }, 200);
+  }, 100);
 
-  if(numpadLength == numpadCountClick) {
-    if(md5(md5(numpadEnteredPassword)) == numpadDoubleMd5Password) {
+  if(numpadOptions.length == numpadCountClick) {
+    if(md5(md5(numpadEnteredPassword)) == numpadOptions.doublemd5password) {
       // Success, php is required to validate again to prevent cross site script
-      window.location = numpadCorrectRedirect+"?pass="+numpadEnteredPassword;
+      window.location = numpadOptions.redirect+"?pass="+numpadEnteredPassword;
     } else {
       // Delay reset with 500ms
       setTimeout(function() {
         // Reset each pin
-        for(var i = 0; i < numpadLength; i++) {
+        for(var i = 0; i < numpadOptions.length; i++) {
           document.getElementById('pin' + (i+1)).style.background = 'transparent';
         }
         numpadCountClick = 0;
