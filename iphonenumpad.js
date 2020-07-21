@@ -17,7 +17,6 @@ class IPhoneNumpad {
                         +'border:none;'
                         +'opacity:0;'
                         +'position:relative';
-
     // Append 10 buttons + 2 invisible
     for(var i = 0; i < 12; i++) {
       let numpadButton = document.createElement('button');
@@ -30,7 +29,6 @@ class IPhoneNumpad {
       if((((i+1) / 3) % 1) == 0 && i != 0) {
         margin = 0;
       }
-
       // Space for left and right of bottom '0'
       if(i == 9 || i == 11) {
         background = 'transparent';
@@ -43,7 +41,6 @@ class IPhoneNumpad {
         numpadButton.setAttribute("onclick", "numpad(this)");
         numpadButton.setAttribute("value", i+1)
       }
-
       // Set style depending on button position
       numpadButton.setAttribute('style', 'background:'+background+';'
                                                          +'margin-right:'+margin+';'
@@ -63,7 +60,6 @@ class IPhoneNumpad {
                                   +'flex-wrap: wrap;'
                                   +'position: relative;'
                                   +'text-align:center');
-
     // Create title with entered text
     const text = document.createElement('h3');
     let textSize = (numpadWidth * 0.7) / 2;
@@ -99,7 +95,6 @@ class IPhoneNumpad {
    * @param {string} elementID - ID of div containing scrolling buttons
    * @param {Object} options - { password, length, color, text }
    */
-
   constructor(elementID, options) {
     const div = document.getElementById(elementID);
     // Default value
