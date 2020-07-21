@@ -1,4 +1,4 @@
-# IPhoneNumpad
+# IPhoneNumpad.js
 IPhoneNumpad creates very easily a copy of the IPhone pin numpad where you have to enter X numbers to login<br>
 MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br><br>
 > IPhoneNumpad('elementID'), { <br><br>
