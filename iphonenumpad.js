@@ -44,8 +44,8 @@ class IPhoneNumpad {
         
       // Set style depending on button position
       numpadButton.setAttribute('style', 'background:'+background+';'
-                                                         +'margin-right:'+margin+';'
-                                                         +buttonStyle);
+                                         +'margin-right:'+margin+';'
+                                         +buttonStyle);
       numpad.appendChild(numpadButton);
     }
     div.appendChild(numpad);
