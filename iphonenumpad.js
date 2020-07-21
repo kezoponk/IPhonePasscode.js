@@ -41,6 +41,7 @@ class IPhoneNumpad {
         numpadButton.setAttribute("onclick", "numpad(this)");
         numpadButton.setAttribute("value", i+1)
       }
+        
       // Set style depending on button position
       numpadButton.setAttribute('style', 'background:'+background+';'
                                                          +'margin-right:'+margin+';'
