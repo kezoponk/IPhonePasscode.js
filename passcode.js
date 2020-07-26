@@ -24,23 +24,20 @@ class IPhoneNumpad {
       let background = 'white',
           margin = '9%';
 
-      // Remove margin for the third button in row
-      if((((i+1) / 3) % 1) == 0 && i != 0) {
+      if((i+1) / 3 % 1 == 0 && i != 0) {
+        // Remove margin for the third button in row
         margin = 0;
       }
-      // Space for left and right of bottom '0'
       if(i == 9 || i == 11) {
+        // Space for left and right of bottom '0'
         background = 'transparent';
       } else if(i == 10) {
         // If button value is '0'
-        numpadButton.setAttribute("onclick", "numpad(this)");
-        numpadButton.setAttribute("value", "0")
+        numpadButton.setAttribute("onclick", "numpad(this,0)");
       } else {
         // Increase i by 1 since i have to start on 0
-        numpadButton.setAttribute("onclick", "numpad(this)");
-        numpadButton.setAttribute("value", i+1)
+        numpadButton.setAttribute("onclick", "numpad(this,"+(i+1)+")");
       }
-
       // Set style depending on button position
       numpadButton.style.cssText = 'background:'+background+';'
                                    +'margin-right:'+margin+';'
@@ -114,7 +111,6 @@ class IPhoneNumpad {
     numpad.style.cssText = 'height:'+numpadHeight+'px;'
                            +'width:'+numpadWidth+'px;'
                            +'user-select: none';
-
     // Use numpad background and align buttons according to background
     numpad.style.background = 'url(src/src/'+options.color+'_numpad.png) no-repeat top / 100% 100%';
 
@@ -168,8 +164,8 @@ function md5(inputString) {
     return rh(a)+rh(b)+rh(c)+rh(d);
 }
 
-function numpad(button) {
-  numpadEnteredPassword += button.value;
+function numpad(button, value) {
+  numpadEnteredPassword += value;
   let countclick = numpadEnteredPassword.length;
 
   // Fill pin width entered color
