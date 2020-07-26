@@ -2,8 +2,7 @@
  * @author Albin Eriksson, https://github.com/kezoponk
  * @license MIT, https://opensource.org/licenses/MIT
  */
-var numpadCountClick = 0,
-    numpadEnteredPassword = "",
+var numpadEnteredPassword = "",
     numpadOptions;
 
 class IPhoneNumpad {
@@ -41,11 +40,11 @@ class IPhoneNumpad {
         numpadButton.setAttribute("onclick", "numpad(this)");
         numpadButton.setAttribute("value", i+1)
       }
-        
+
       // Set style depending on button position
-      numpadButton.setAttribute('style', 'background:'+background+';'
-                                         +'margin-right:'+margin+';'
-                                         +buttonStyle);
+      numpadButton.style.cssText = 'background:'+background+';'
+                                   +'margin-right:'+margin+';'
+                                   +buttonStyle;
       numpad.appendChild(numpadButton);
     }
     div.appendChild(numpad);
@@ -54,37 +53,37 @@ class IPhoneNumpad {
   appendEnteredPins(div, pinHeight, numpadWidth) {
     // Create div containing pins and change css to center all
     const pinsDiv = document.createElement('div');
-    pinsDiv.setAttribute('style', 'height:'+pinHeight+'px;'
-                                  +'width:'+numpadWidth+'px;'
-                                  +'display: flex;'
-                                  +'justify-content: center;'
-                                  +'flex-wrap: wrap;'
-                                  +'position: relative;'
-                                  +'text-align:center');
+    pinsDiv.style.cssText = 'height:'+pinHeight+'px;'
+                            +'width:'+numpadWidth+'px;'
+                            +'display: flex;'
+                            +'justify-content: center;'
+                            +'flex-wrap: wrap;'
+                            +'position: relative;'
+                            +'text-align:center';
     // Create title with entered text
     const text = document.createElement('h3');
     let textSize = (numpadWidth * 0.7) / 2;
-    text.setAttribute('style', 'font-size:'+textSize+'%;'
-                               +'color:white;'
-                               +'width:100%;'
-                               +'text-align:center;'
-                               +'font-family: Arial, sans-serif;'
-                               +'font-weight: lighter;'
-                               +'margin:0');
+    text.style.cssText = 'font-size:'+textSize+'%;'
+                         +'color:white;'
+                         +'width:100%;'
+                         +'text-align:center;'
+                         +'font-family: Arial, sans-serif;'
+                         +'font-weight: lighter;'
+                         +'margin:0';
 
     text.innerHTML = numpadOptions.text;
     pinsDiv.appendChild(text);
 
     for(var i = 0; i < numpadOptions.length; i++) {
       let singlePin = document.createElement('div');
-      singlePin.setAttribute('style', 'border: 2px solid white;'
-                                      +'height:20%;'
-                                      +'width: 4.5%;'
-                                      +'margin: 7px;'
-                                      +'margin-top:0;'
-                                      +'border-radius: 100%;'
-                                      +'background: transparent;'
-                                      +'position: relative');
+      singlePin.style.cssText = 'border: 2px solid white;'
+                                +'height:20%;'
+                                +'width: 4.5%;'
+                                +'margin: 7px;'
+                                +'margin-top:0;'
+                                +'border-radius: 100%;'
+                                +'background: transparent;'
+                                +'position: relative';
 
       singlePin.setAttribute("id", "pin" + (i+1));
       pinsDiv.appendChild(singlePin);
@@ -112,8 +111,9 @@ class IPhoneNumpad {
         numpadHeight = div.offsetHeight - pinHeight,
         numpadWidth = numpadHeight * 0.8144;
 
-    numpad.setAttribute('style', 'height:'+numpadHeight+'px;'
-                                 +'width:'+numpadWidth+'px;');
+    numpad.style.cssText = 'height:'+numpadHeight+'px;'
+                           +'width:'+numpadWidth+'px;'
+                           +'user-select: none';
 
     // Use numpad background and align buttons according to background
     numpad.style.background = 'url(src/src/'+options.color+'_numpad.png) no-repeat top / 100% 100%';
@@ -125,7 +125,6 @@ class IPhoneNumpad {
 
 //  A formatted version of a popular md5 implementation.
 //  Original copyright (c) Paul Johnston & Greg Holt.
-//  The function itself is now 42 lines long.
 function md5(inputString) {
     var hc="0123456789abcdef";
     function rh(n) {var j,s="";for(j=0;j<=3;j++) s+=hc.charAt((n>>(j*8+4))&0x0F)+hc.charAt((n>>(j*8))&0x0F);return s;}
@@ -170,11 +169,11 @@ function md5(inputString) {
 }
 
 function numpad(button) {
-  numpadCountClick++;
   numpadEnteredPassword += button.value;
+  let countclick = numpadEnteredPassword.length;
 
   // Fill pin width entered color
-  document.getElementById('pin'+numpadCountClick).style.background = "white";
+  document.getElementById('pin'+countclick).style.background = "white";
 
   // IPhone numpad press animation
   button.style.opacity = "0.6";
@@ -184,7 +183,7 @@ function numpad(button) {
     button.style.transition = "opacity 200ms linear";
   }, 100);
 
-  if(numpadOptions.length == numpadCountClick) {
+  if(numpadOptions.length == countclick) {
     if(md5(md5(numpadEnteredPassword)) == numpadOptions.doublemd5password) {
       // Success, php is required to validate again to prevent cross site script
       window.location = numpadOptions.redirect+"?pass="+numpadEnteredPassword;
@@ -195,7 +194,6 @@ function numpad(button) {
         for(var i = 0; i < numpadOptions.length; i++) {
           document.getElementById('pin' + (i+1)).style.background = 'transparent';
         }
-        numpadCountClick = 0;
         numpadEnteredPassword = "";
       }, 500);
     }
