@@ -11,6 +11,7 @@ for(let i = 3; i <= numpadPath.length-2; i++) {
   // Begin on 3 to skip http:// and -2 to get directory instead of filename(numpad.js)
   numpadDirectory += '/'+numpadPath[i];
 }
+
 class IPhoneNumpad {
   appendButtons(div, numpad) {
     const buttonStyle = 'height:22.3%;'
