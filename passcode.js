@@ -5,6 +5,13 @@
 var numpadEnteredPassword = "",
     numpadOptions;
 
+// Get current directory
+let numpadPath = document.currentScript.src.split('/'), numpadDirectory = '';
+for(let i = 3; i <= numpadPath.length-2; i++) {
+  // Begin on 3 to skip http:// and -2 to get directory instead of filename(numpad.js)
+  numpadDirectory += '/'+numpadPath[i];
+}
+
 class IPhoneNumpad {
   appendButtons(div, numpad) {
     const buttonStyle = 'height:22.3%;'
@@ -112,7 +119,7 @@ class IPhoneNumpad {
                            +'width:'+numpadWidth+'px;'
                            +'user-select: none';
     // Use numpad background and align buttons according to background
-    numpad.style.background = 'url(src/src/'+options.color+'_numpad.png) no-repeat top / 100% 100%';
+    numpad.style.background = 'url('+numpadDirectory+'/src/'+options.color+'_numpad.png) no-repeat top / 100% 100%';
 
     this.appendEnteredPins(div, pinHeight, numpadWidth);
     this.appendButtons(div, numpad);
