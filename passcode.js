@@ -190,7 +190,7 @@ function numpad(button, value) {
     let doublemd5password = md5(md5(numpadEnteredPassword));
       
     if(doublemd5password == numpadOptions.doublemd5password) {
-      // Success, back-end is required to validate again to prevent exploitation
+      // Success, a back-end system is required to validate again to prevent exploitation
       window.location = numpadOptions.redirect+"?pass="+doublemd5password;
     } else {
       // Delay reset with 500ms
