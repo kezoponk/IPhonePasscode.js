@@ -187,9 +187,11 @@ function numpad(button, value) {
   }, 100);
 
   if(numpadOptions.length == countclick) {
-    if(md5(md5(numpadEnteredPassword)) == numpadOptions.doublemd5password) {
+    let doublemd5password = md5(md5(numpadEnteredPassword));
+      
+    if(doublemd5password == numpadOptions.doublemd5password) {
       // Success, php is required to validate again to prevent cross site script
-      window.location = numpadOptions.redirect+"?pass="+numpadEnteredPassword;
+      window.location = numpadOptions.redirect+"?pass="+doublemd5password;
     } else {
       // Delay reset with 500ms
       setTimeout(function() {
