@@ -187,11 +187,10 @@ function numpad(button, value) {
   }, 100);
 
   if(numpadOptions.length == countclick) {
-    let doublemd5password = md5(md5(numpadEnteredPassword));
-      
-    if(doublemd5password == numpadOptions.doublemd5password) {
-      // Success, a back-end system is required to validate again to prevent exploitation
-      window.location = numpadOptions.redirect+"?pass="+doublemd5password;
+    let dblmd5EnteredPassword = md5(md5(numpadEnteredPassword));
+    if(dblmd5EnteredPassword == numpadOptions.doublemd5password) {
+      // Success, a back-end system is required to validate again to avoid exploitation
+      window.location = numpadOptions.redirect+"?pass="+dblmd5EnteredPassword;
     } else {
       // Delay reset with 500ms
       setTimeout(function() {
