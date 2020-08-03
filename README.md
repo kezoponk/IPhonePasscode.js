@@ -29,6 +29,5 @@ if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
 }
 ```
 <p align="center"> 
-  \ Vanilla / <br>
-  <a href="https://java.com"> <img src="https://forthebadge.com/images/badges/made-with-javascript.svg"> </a>
+  <strong> Only </strong><a href="https://java.com"> <img src="https://forthebadge.com/images/badges/uses-js.svg"> </a>
 </p>
