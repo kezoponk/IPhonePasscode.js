@@ -1,4 +1,4 @@
-# IPhonePasscode.js [![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+# IPhonePasscode.js ![Dependency Status](https://david-dm.org/dwyl/esta.svg)]
 IPhonePasscode creates, with vanilla javascript, very easily a copy of the IPhone pin numpad where you have to enter X numbers to login<br>
 MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br><br>
 
