@@ -14,7 +14,7 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
     new IPhoneNumpad('iphoneNumpad', { <strong>Options</strong> }); 
   </code>
 </center>
-<br>
+<br><br><br>
 
 ### Examples
 **Password is 1234, white passcode, php used for back-end with a keychain session variable**
