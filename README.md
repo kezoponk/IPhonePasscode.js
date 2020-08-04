@@ -38,5 +38,4 @@ if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
   header('location: ../index.html');
 }
 ```
-<center>
-<img src="https://i.ibb.co/P5MH3v6/Ska-rmavbild-2020-08-04-kl-12-18-57.png">
+<img src="https://i.ibb.co/P5MH3v6/Ska-rmavbild-2020-08-04-kl-12-18-57.png"><img src="https://i.ibb.co/P5MH3v6/Ska-rmavbild-2020-08-04-kl-12-18-57.png">
