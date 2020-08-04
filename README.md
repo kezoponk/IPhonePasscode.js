@@ -9,7 +9,11 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
 | redirect | Back-end file or directory to redirect if password is right |
 | color | Color of buttons <br>Alternatives: white, black, blue |
 | text | Text appearing above password pins <br>Default: Enter Password |
-
+<p align="center">
+  <code> 
+    new IPhoneNumpad('iphoneNumpad', { **Options** }); 
+  </code>
+<p>
 <br>
 
 ```html
