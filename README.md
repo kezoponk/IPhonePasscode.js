@@ -3,6 +3,7 @@ IPhonePasscode creates, with vanilla javascript, very easily a copy of the IPhon
 MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br><br>
 
 | Options | Description |
+| --- | --- |
 | doublemd5password | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
 | length | Length of password |
 | color | Color of buttons <br>Alternatives: white, black, blue |
