@@ -1,7 +1,6 @@
 # IPhonePasscode.js ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) ![Dependency Status](https://david-dm.org/dwyl/esta.svg)
 IPhonePasscode creates, with vanilla javascript, very easily a copy of the IPhone pin numpad where you have to enter X numbers to login<br>
 MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br><br>
-<img src="https://i.ibb.co/f8DbkwH/Ska-rmavbild-2020-08-02-kl-21-28-33.png">
 
 | Options | Description |
 | --- | --- |
@@ -39,3 +38,5 @@ if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
   header('location: ../index.html');
 }
 ```
+<center>
+<img src="https://i.ibb.co/P5MH3v6/Ska-rmavbild-2020-08-04-kl-12-18-57.png">
