@@ -22,8 +22,6 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
 <br><br>
 
 ### Examples
-Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
-
 ```html
 <div class="index-password" id="iphoneNumpad"></div>
 ```
@@ -43,10 +41,9 @@ if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
   header('location: ../index.html');
 }
 ```
+Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
 
 <br>
-
-Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, php used for back-end with a keychain session variable
 
 ```html
 <div class="index-password" id="iphoneNumpad"></div>
@@ -69,3 +66,5 @@ if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
   header('location: ../index.html');
 }
 ```
+Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, php used for back-end with a keychain session variable
+
