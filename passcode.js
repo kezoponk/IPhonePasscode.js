@@ -123,7 +123,7 @@ class IPhoneNumpad {
 
   /**
    * @param {string} elementID - ID of div containing scrolling buttons
-   * @param {Object} options - { password, length, color, text, animation, animationTime, animationType }
+   * @param {Object} options - { password, length, color, text, animation, animationDuration, animationType }
    */
   constructor(elementID, options) {
     const div = document.getElementById(elementID);
@@ -131,7 +131,7 @@ class IPhoneNumpad {
     // Defaults
     if (options.text == null) options.text = "Enter Password";
     if (options.animation == null) options.animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }';
-    if (options.animationTime == null) options.animationTime = '0.3';
+    if (options.animationDuration == null) options.animationDuration = '0.3';
     if (options.animationType == null) options.animationType = 'linear';
 
     // Make options global for button onclick
@@ -155,7 +155,7 @@ class IPhoneNumpad {
     // Create keyframes animation to enable easy custom animations
     this.addStyle(`@keyframes numpad-animation {`+options.animation+`}
     div.numpad-animation {
-      animation: numpad-animation `+options.animationTime+`s 1 `+options.animationType+`;
+      animation: numpad-animation `+options.animationDuration+`s 1 `+options.animationType+`;
     }
     @font-face {
       font-family: 'sf-regular';
@@ -173,7 +173,7 @@ function numpad(button, value) {
 
   // Animation
   button.classList.toggle('numpad-animation');
-  setTimeout(function() { button.classList.toggle('numpad-animation'); }, numpadOptions.animationTime * 1000);
+  setTimeout(function() { button.classList.toggle('numpad-animation'); }, numpadOptions.animationDuration * 1000);
 
   if(numpadOptions.length == countclick) {
     let dblmd5EnteredPassword = md5(md5(numpadEnteredPassword));
