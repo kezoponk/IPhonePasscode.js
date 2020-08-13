@@ -35,7 +35,7 @@ new IPhoneNumpad('iphoneNumpad', {
                   'text': 'Enter Password To Login'});
 ```
 ```php
-if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
+if($_GET['pass'] == '1234') {
   session_start();
   $_SESSION['keychain'] = True;
   header('location: ../index.html');
@@ -58,12 +58,10 @@ new IPhoneNumpad('iphoneNumpad', {
                   'animationDuration': '0.8',
                   'redirect': '../php/keychain.php'});
 ```
-```php
-if($_GET['pass'] == 'ec6a6536ca304edf844d1d248a4f08dc') {
-  session_start();
-  $_SESSION['keychain'] = True;
-  header('location: ../index.html');
-}
+```python
+def login_func(request):
+    if request.GET['value'] is '1234':
+        return redirect('/login/')
 ```
-Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, php used for back-end with a keychain session variable
+Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, python django used for back-end with a keychain session variable
 
