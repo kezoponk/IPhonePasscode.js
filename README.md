@@ -57,11 +57,11 @@ new IPhoneNumpad('iphoneNumpad', {
                   'animation': '100% { transform: rotate(360deg); }',
                   'animationType': 'ease-out',
                   'animationDuration': '0.8',
-                  'redirect': '../php/keychain.php'});
+                  'redirect': '/checkpasscode/'});
 ```
 ```python
 def login_func(request):
-    if request.GET['value'] is '1234':
+    if request.GET['pass'] is '1234':
         return redirect('/loggedin/')
 ```
 Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, python django used for back-end
