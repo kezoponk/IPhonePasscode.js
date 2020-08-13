@@ -16,17 +16,17 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
 
 <p align="center">
   <code> 
-    new IPhoneNumpad('iphoneNumpad', { <strong>Options</strong> }); 
+    new IPhonePasscode('iphoneNumpad', { <strong>Options</strong> }); 
   </code>
 </center>
 <br><br>
 
 ### Examples
 ```html
-<div class="index-password" id="iphoneNumpad"></div>
+<div class="index-password" id="iphonePasscode"></div>
 ```
 ```javascript
-new IPhoneNumpad('iphoneNumpad', {
+new IPhonePasscode('iphonePasscode', {
                   'doublemd5password': 'ec6a6536ca304edf844d1d248a4f08dc',
                   'length': '4',
                   'background': 'white',
@@ -42,14 +42,14 @@ if($_GET['pass'] == '1234') {
 }
 ```
 Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
-<br>
+<br><br>
 ___
 
 ```html
-<div class="index-password" id="iphoneNumpad"></div>
+<div class="index-password" id="iphonePasscode"></div>
 ```
 ```javascript
-new IPhoneNumpad('iphoneNumpad', {
+new IPhonePasscode('iphonePasscode', {
                   'doublemd5password': 'ec6a6536ca304edf844d1d248a4f08dc',
                   'length': '10',
                   'background': 'gray',
