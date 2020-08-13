@@ -21,7 +21,7 @@ MD5 hash your numerical password twice: <a href="https://www.md5hashgenerator.co
 </center>
 <br><br>
 
-### Examples
+#### Example 1
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
@@ -42,9 +42,9 @@ if($_GET['pass'] == '1234') {
 }
 ```
 Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
-<br><br>
 ___
 
+### Example 2
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
