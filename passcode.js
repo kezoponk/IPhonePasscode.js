@@ -179,10 +179,9 @@ function passcode(button, value) {
   setTimeout(() => { button.classList.toggle('passcode-animation'); }, passcodeOptions.animationDuration * 1000);
 
   if(passcodeOptions.length == countclick) {
-    let dblmd5EnteredPassword = md5(md5(passcodeEnteredPassword));
-    if(dblmd5EnteredPassword == passcodeOptions.doublemd5password) {
+    if(md5(md5(passcodeEnteredPassword)) == passcodeOptions.doublemd5password) {
       // Success, a back-end system is required to validate again to avoid exploitation
-      window.location = passcodeOptions.redirect+"?pass="+dblmd5EnteredPassword;
+      window.location = passcodeOptions.redirect+"?pass="+passcodeEnteredPassword;
     } else {
       // Delay reset with 500ms
       setTimeout(() => {
