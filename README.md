@@ -42,6 +42,7 @@ if($_GET['pass'] == '1234') {
 }
 ```
 Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
+<br>
 ___
 
 ```html
@@ -61,7 +62,7 @@ new IPhoneNumpad('iphoneNumpad', {
 ```python
 def login_func(request):
     if request.GET['value'] is '1234':
-        return redirect('/login/')
+        return redirect('/loggedin/')
 ```
-Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, python django used for back-end with a keychain session variable
+Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, python django used for back-end
 
