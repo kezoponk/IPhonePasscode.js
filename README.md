@@ -1,4 +1,4 @@
-# IPhonePasscode.js ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)
+# IPhonePasscode.js
 IPhonePasscode creates, with vanilla javascript, very easily a copy of the IPhone pin passcode where you have to enter X numbers to login<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 ***A back-end is required to validate the passcode, see examples bellow***
