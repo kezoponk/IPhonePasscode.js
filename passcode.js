@@ -125,11 +125,11 @@ class IPhonePasscode {
   }
 
   /**
-   * @param {string} elementID - ID of div containing scrolling buttons
+   * @param {string} identifier - ID or name of div containing passcode
    * @param {Object} options - { password, length, color, text, animation, animationDuration, animationType }
    */
-  constructor(elementID, options) {
-    const div = document.querySelector(elementID);
+  constructor(identifier, options) {
+    const div = document.querySelector(identifier);
 
     // Defaults
     if (options.text == null) options.text = "Enter Password";
@@ -140,7 +140,7 @@ class IPhonePasscode {
     // Make options global for button onclick
     passcodeOptions = options;
 
-    // Init passcode that will exist in elementID div
+    // Init passcode that will exist in div
     const passcode = document.createElement('div');
 
     // Set width and height to make passcode fit perfectly
