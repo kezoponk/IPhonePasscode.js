@@ -41,8 +41,8 @@ class IPhonePasscode {
                                    line-height:0;`
                                    +'color:'+this.options.color+';';
       // Default buttons
-      let opacity = '1',
-          margin = '9%';
+      let opacity = '1', margin = '9%';
+      
       // Third button in a row: remove margin
       if((i+1) / 3 % 1 == 0 && i != 0) {
         margin = 0;
