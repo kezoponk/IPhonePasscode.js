@@ -18,7 +18,7 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 
 <p align="center">
   <code> 
-    new IPhonePasscode('iphonePasscode', { <strong>Options</strong> }); 
+    new IPhonePasscode('#targetDiv', { <strong>Options</strong> }); 
   </code>
 </center>
 <br><br>
