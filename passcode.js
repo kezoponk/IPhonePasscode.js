@@ -24,7 +24,6 @@ class IPhonePasscode {
                         +'position:relative';
 
     const smallLettersArray = [ null, 'ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ', null, null, null ];
-
     // Append 10 buttons + 2 invisible
     for(var i = 0; i < 12; i++) {
       let passcodeButton = document.createElement('div');
