@@ -13,7 +13,7 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 | color | Text color |
 | text | Text appearing above password pins <br>Default: Enter Password |
 | animation | Button press keyframes animation<br>Default is same animation as the IPhone |
-| animationDuration | Animation duration, entered in seconds<br>Default: 0.3 |
+| animationDuration | Animation duration<br>Default: 300ms |
 | animationType | linear, ease-in, ease-in-out... etc<br>Default:linear |
 
 <p align="center">
@@ -58,7 +58,7 @@ new IPhonePasscode('.index-password', {
                   'color': 'white',
                   'animation': '100% { transform: rotate(360deg); }',
                   'animationType': 'ease-out',
-                  'animationDuration': '0.8',
+                  'animationDuration': '0.8s',
                   'redirect': '/checkpasscode/'});
 ```
 ```python
