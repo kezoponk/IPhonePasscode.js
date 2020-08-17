@@ -55,14 +55,14 @@ ___
 ```
 ```javascript
 new IPhonePasscode('.index-password', {
-                  'doublemd5password': 'ec6a6536ca304edf844d1d248a4f08dc',
-                  'length': '10',
-                  'background': 'gray',
-                  'color': 'white',
-                  'animation': '100% { transform: rotate(360deg); }',
-                  'animationType': 'ease-out',
-                  'animationDuration': '0.8s',
-                  'redirect': '/checkpasscode/'});
+                     doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
+                     length: '10',
+                     background: 'gray',
+                     color: 'white',
+                     animation: '100% { transform: rotate(360deg); }',
+                     animationType: 'ease-out',
+                     animationDuration: '0.8s',
+                     redirect: '/checkpasscode/'});
 ```
 ```python
 def login_func(request):
