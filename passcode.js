@@ -11,16 +11,16 @@ class IPhonePasscode {
 
   appendButtons(div, passcode) {
     const baseButtonStyle = `height:22.3%;
-                            width:27.3%;
-                            margin-top: 0;
-                            margin-left:0;
-                            margin-bottom:4.35%;
-                            border:none;
-                            border-radius:100%;
-                            padding-bottom:14px;
-                            float:left;
-                            position:relative;`
-                            +'background:'+this.options.background+';';
+                             width:27.3%;
+                             margin-top: 0;
+                             margin-left:0;
+                             margin-bottom:4.35%;
+                             border:none;
+                             border-radius:100%;
+                             padding-bottom:14px;
+                             float:left;
+                             position:relative;`
+                             +'background:'+this.options.background+';';
 
     const smallLettersArray = [ null, 'A B C', 'D E F', 'G H I', 'J K L', 'M N O', 'P Q R S', 'T U V', 'W X Y Z', null, '+', null ];
     // Append 10 buttons + 2 invisible
@@ -35,14 +35,14 @@ class IPhonePasscode {
                                  +'color:'+this.options.color+';';
 
       smallLetters.style.cssText = `margin:0;
-                                   font-family: sf-regular, sans-serif;'
-                                   font-weight:400;
-                                   font-size:110%;
-                                   line-height:0;`
-                                   +'color:'+this.options.color+';';
+                                    font-family: sf-regular, sans-serif;'
+                                    font-weight:400;
+                                    font-size:110%;
+                                    line-height:0;`
+                                    +'color:'+this.options.color+';';
       // Default buttons
       let opacity = '1', margin = '9%';
-      
+
       // Third button in a row: remove margin
       if((i+1) / 3 % 1 == 0 && i != 0) {
         margin = 0;
@@ -82,35 +82,36 @@ class IPhonePasscode {
                              flex-wrap: wrap;
                              position: relative;
                              text-align:center;`
-                            +'height:'+pinHeight+'px;'
-                            +'width:'+passcodeWidth+'px;';
-    
+                             +'height:'+pinHeight+'px;'
+                             +'width:'+passcodeWidth+'px;';
+
     // Create title with entered text
     const text = document.createElement('h3');
     let textSize = (passcodeWidth * 0.7) / 2;
-    text.style.cssText = `color:white;
+    text.style.cssText = `color:`+this.options.text_color+`;
                           width:100%;
                           text-align:center;
                           font-family: sf-regular, sans-serif;
                           font-weight: 400;
                           margin:0;`
-                         +'font-size:'+textSize+'%;';
+                          +'font-size:'+textSize+'%;';
 
     text.innerHTML = this.options.text;
     pinsDiv.appendChild(text);
 
+    this.pins = [];
     for(var i = 0; i < this.options.length; i++) {
       let singlePin = document.createElement('div');
-      singlePin.style.cssText = `border: 2px solid white;
-                                height:20%;
-                                width: 4.5%;
-                                margin: 7px;
-                                margin-top:0;
-                                border-radius: 100%;
-                                background: transparent;
-                                position: relative`;
+      singlePin.style.cssText = `height:20%;
+                                 width: 4.5%;
+                                 margin: 7px;
+                                 margin-top:0;
+                                 border-radius: 100%;
+                                 background: transparent;
+                                 position: relative;`
+                                 +'border: 2px solid '+this.options.pin_border+';';
 
-      singlePin.setAttribute("id", "pin" + (i+1));
+      this.pins[i] = singlePin;
       pinsDiv.appendChild(singlePin);
     }
     div.appendChild(pinsDiv);
@@ -123,14 +124,17 @@ class IPhonePasscode {
   constructor(identifier, options) {
     const div = document.querySelector(identifier);
     this.enteredPassword = '';
-    this.options = options;
-
+    
     // Defaults
     if (options.text == null) options.text = 'Enter Password';
+    if (options.text_color == null) options.text_color = options.color;
+    if (options.pin_border == null) options.pin_border = options.color;
+    if (options.pin_background == null) options.pin_background = options.color;
     if (options.animation == null) options.animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }';
     if (options.animationDuration == null) options.animationDuration = '300ms';
     if (options.animationType == null) options.animationType = 'linear';
-
+    this.options = options;
+    
     // Init passcode that will exist inside div
     const passcode = document.createElement('div');
 
@@ -161,11 +165,12 @@ class IPhonePasscode {
   buttonPressed(button) {
     this.enteredPassword += button.children[0].innerHTML;
     let countclick = this.enteredPassword.length;
-    
+
     // Fill pin with entered color
     if (this.options.length >= countclick) {
-      document.getElementById('pin' + countclick).style.background = "white";
+      this.pins[countclick-1].style.background = this.options.pin_background;
     }
+
     // Animation
     button.classList.remove('passcode-animation');
     button.offsetWidth;
@@ -180,14 +185,14 @@ class IPhonePasscode {
         setTimeout(() => {
           // Reset each pin
           for(var i = 0; i < this.options.length; i++) {
-            document.getElementById('pin' + (i+1)).style.background = 'transparent';
+            this.pins[i].style.background = "transparent";
           }
           this.enteredPassword = "";
         }, 500);
       }
     }
   }
-  
+
   //  A formatted version of a popular md5 implementation.
   //  Original copyright (c) Paul Johnston & Greg Holt.
   md5(inputString) {
