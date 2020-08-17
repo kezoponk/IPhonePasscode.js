@@ -110,7 +110,6 @@ class IPhonePasscode {
                                  background: transparent;
                                  position: relative;`
                                  +'border: 2px solid '+this.options.pin_border+';';
-
       this.pins[i] = singlePin;
       pinsDiv.appendChild(singlePin);
     }
