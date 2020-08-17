@@ -14,7 +14,7 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 | title | Text appearing above password pins <br>Default: Enter Password |
 | title_color | Title text color<br>Default: Same as 'color' |
 | pin_background | Filled pin background<br>Default: Same as 'color' |
-| pin_border | Pin border<br>Default: Same as 'color' |
+| pin_border | Empty pin color<br>Default: Same as 'color' |
 | animation | Button press keyframes animation<br>Default is same animation as the IPhone |
 | animationDuration | Animation duration<br>Default: 300ms |
 | animationType | linear, ease-in, ease-in-out... etc<br>Default:linear |
