@@ -86,18 +86,18 @@ class IPhonePasscode {
                              +'width:'+passcodeWidth+'px;';
 
     // Create title with entered text
-    const text = document.createElement('h3');
-    let textSize = (passcodeWidth * 0.7) / 2;
-    text.style.cssText = `color:`+this.options.text_color+`;
+    const title = document.createElement('h3');
+    let titleSize = (passcodeWidth * 0.7) / 2;
+    title.style.cssText = `color:`+this.options.title_color+`;
                           width:100%;
                           text-align:center;
                           font-family: sf-regular, sans-serif;
                           font-weight: 400;
                           margin:0;`
-                          +'font-size:'+textSize+'%;';
+                          +'font-size:'+titleSize+'%;';
 
-    text.innerHTML = this.options.text;
-    pinsDiv.appendChild(text);
+    title.innerHTML = this.options.title;
+    pinsDiv.appendChild(title);
 
     this.pins = [];
     for(var i = 0; i < this.options.length; i++) {
@@ -119,22 +119,22 @@ class IPhonePasscode {
 
   /**
    * @param {string} identifier - ID or class of div containing passcode
-   * @param {Object} options - { password, length, color, text, animation, animationDuration, animationType }
+   * @param {Object} options - { password, length, color, title, title_color, pin_background, pin_border, animation, animationDuration, animationType }
    */
   constructor(identifier, options) {
     const div = document.querySelector(identifier);
     this.enteredPassword = '';
-    
+
     // Defaults
-    if (options.text == null) options.text = 'Enter Password';
-    if (options.text_color == null) options.text_color = options.color;
-    if (options.pin_border == null) options.pin_border = options.color;
+    if (options.title == null) options.title = 'Enter Password';
+    if (options.title_color == null) options.title_color = options.color;
     if (options.pin_background == null) options.pin_background = options.color;
+    if (options.pin_border == null) options.pin_border = options.color;
     if (options.animation == null) options.animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }';
     if (options.animationDuration == null) options.animationDuration = '300ms';
     if (options.animationType == null) options.animationType = 'linear';
     this.options = options;
-    
+
     // Init passcode that will exist inside div
     const passcode = document.createElement('div');
 
@@ -170,8 +170,7 @@ class IPhonePasscode {
     if (this.options.length >= countclick) {
       this.pins[countclick-1].style.background = this.options.pin_background;
     }
-
-    // Animation
+    // Press Animation
     button.classList.remove('passcode-animation');
     button.offsetWidth;
     button.classList.add('passcode-animation');
