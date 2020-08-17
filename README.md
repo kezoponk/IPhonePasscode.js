@@ -1,5 +1,5 @@
 # IPhonePasscode.js
-IPhonePasscode creates, with vanilla javascript, very easily a copy of the IPhone pin passcode where you have to enter X numbers to login<br>
+IPhonePasscode creates, with vanilla javascript, very easily a highly customizable copy of the IPhone pin passcode where you have to enter X numbers to login<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 ***A back-end is required to validate the passcode, see examples bellow***
 <br><br>
@@ -10,8 +10,11 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 | length | Length of password |
 | redirect | Back-end file or directory to redirect if password is right |
 | background | Button color |
-| color | Text color |
-| text | Text appearing above password pins <br>Default: Enter Password |
+| color | Color of button text and title text |
+| title | Text appearing above password pins <br>Default: Enter Password |
+| title_color | Title text color<br>Default: Same as 'color' |
+| pin_background | Filled pin background<br>Default: Same as 'color' |
+| pin_border | Pin border<br>Default: Same as 'color' |
 | animation | Button press keyframes animation<br>Default is same animation as the IPhone |
 | animationDuration | Animation duration<br>Default: 300ms |
 | animationType | linear, ease-in, ease-in-out... etc<br>Default:linear |
