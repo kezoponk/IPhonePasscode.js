@@ -32,12 +32,11 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 ```
 ```javascript
 new IPhonePasscode('#iphonePasscode', {
-                  'doublemd5password': 'ec6a6536ca304edf844d1d248a4f08dc',
-                  'length': '4',
-                  'background': 'white',
-                  'color': 'black',
-                  'redirect': '../php/keychain.php',
-                  'text': 'Enter Password To Login'});
+                     doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
+                     length: '4',
+                     background: 'white',
+                     color: 'black',
+                     redirect: '../php/keychain.php'});
 ```
 ```php
 if($_GET['pass'] == '1234') {
@@ -56,12 +55,13 @@ ___
 ```javascript
 new IPhonePasscode('.index-password', {
                      doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
-                     length: '10',
+                     length: '4',
                      background: 'gray',
                      color: 'white',
                      animation: '100% { transform: rotate(360deg); }',
                      animationType: 'ease-out',
                      animationDuration: '0.8s',
+                     title: 'Enter Password To Login',
                      redirect: '/checkpasscode/'});
 ```
 ```python
@@ -69,4 +69,4 @@ def login_func(request):
     if request.GET['pass'] is '1234':
         return redirect('/loggedin/')
 ```
-- Password is 1234, gray buttons, white text, ease-out rotate animation for 0.8s, python django used for back-end
+- Password is 1234, gray buttons, white text, modified title, ease-out rotate animation for 0.8s, python django used for back-end
