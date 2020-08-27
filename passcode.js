@@ -177,7 +177,11 @@ class IPhonePasscode {
     if(this.options.length == countclick) {
       if(this.md5(this.md5(this.enteredPassword)) == this.options.doublemd5password) {
         // Success, a back-end system is required to validate again to avoid exploitation
-        window.location = this.options.redirect+"?pass="+this.enteredPassword;
+        if(this.options.redirect.includes('?') {
+          window.location = this.options.redirect+"&pass="+this.enteredPassword;
+        } else {
+          window.location = this.options.redirect+"?pass="+this.enteredPassword;
+        }
       } else {
         // Delay visible reset with 500ms
         setTimeout(() => {
