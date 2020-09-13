@@ -26,7 +26,7 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 </center>
 <br><br>
 
-### Example 1: PHP
+### Example 1 w/ PHP
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
@@ -48,7 +48,7 @@ if($_GET['pass'] == '1234') {
 - Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
 ___
 
-### Example 2: Python Django
+### Example 2 w/ Python Django
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
