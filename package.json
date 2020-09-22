@@ -1,0 +1,29 @@
+{
+  "name": "@kezoponk/iphonepasscode",
+  "version": "1.0.0",
+  "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode",
+  "main": "dist/passcode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kezoponk/IPhonePasscode.js.git"
+  },
+  "keywords": [
+    "passcode",
+    "html",
+    "javascript",
+    "passcode-library",
+    "iphonepasscode",
+    "login",
+    "authorization",
+    "authorize"
+  ],
+  "author": "Albin Eriksson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kezoponk/IPhonePasscode.js/issues"
+  },
+  "homepage": "https://github.com/kezoponk/IPhonePasscode.js#readme"
+}
