@@ -6,11 +6,11 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 
 | Options | Description |
 | --- | --- |
-| doublemd5password | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
-| length | Length of password |
-| redirect | Back-end file or directory to redirect if password is right |
-| background | Button color |
-| color | Color of button text and title text |
+| doublemd5password <br> **Required** | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
+| length <br> **Required** | Length of password |
+| redirect <br> **Required** | Back-end file or directory to redirect if password is right |
+| background <br> **Required** | Button color |
+| color <br> **Required** | Color of button text and title text |
 | title | Text appearing above password pins <br>Default: Enter Password |
 | title_color | Title text color<br>Default: Same as 'color' |
 | pin_background | Filled pin background<br>Default: Same as 'color' |
