@@ -2,7 +2,7 @@
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 **A back-end is required to validate the passcode**, see examples bellow
-<br><br>
+<br>
 
 ## Installation
 Install from the command line:
