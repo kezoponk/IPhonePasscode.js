@@ -11,7 +11,7 @@ $ npm install @kezoponk/iphonepasscode
 ```
 Install via package.json:
 ```json
-"@kezoponk/iphonepasscode": "1.0.0" 
+"@kezoponk/iphonepasscode": "1.0.2" 
 ```
 Or download the dist/passcode.js manually
 ```html
@@ -36,8 +36,8 @@ Or download the dist/passcode.js manually
 | animationType | linear, ease-in, ease-in-out... etc<br>Default:linear |
 
 <p align="center">
-  <code> 
-    new IPhonePasscode('#targetDiv', { <strong>Options</strong> }); 
+  <code>
+    new IPhonePasscode('#targetDiv', { <strong>Options</strong> });
   </code>
 </center>
 <br><br>
