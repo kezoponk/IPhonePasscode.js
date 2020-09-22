@@ -2,7 +2,7 @@
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 **A back-end is required to validate the passcode**, see examples bellow
-<br><br>
+<br>
 
 ## Installation
 Install from the command line:
@@ -13,9 +13,9 @@ Install via package.json:
 ```json
 "@kezoponk/iphonepasscode": "1.0.0" 
 ```
-Or download the dist/iphonepasscode.js manually
+Or download the dist/passcode.js manually
 ```html
-<script type="text/javascript" src="/static/scroller.js"></script>
+<script type="text/javascript" src="passcode.js"></script>
 ```
 
 ## Usage
