@@ -45,7 +45,9 @@ if($_GET['pass'] == '1234') {
   header('location: ../index.html');
 }
 ```
-- Password is 1234, white buttons, black text, php used for back-end with a keychain session variable
+- Password is 1234
+- White buttons, black text
+- PHP used for back-end with a keychain session variable
 ___
 
 ### Example 2 with Python Django
@@ -69,4 +71,8 @@ def login_func(request):
     if request.GET['pass'] is '1234':
         return redirect('/loggedin/')
 ```
-- Password is 1234, gray buttons, white text, modified title, ease-out rotate animation for 0.8s, python django used for back-end
+- Password is 1234
+- Gray buttons, white text
+- Modified title
+- Ease-out rotate animation for 0.8s
+- Python django used for back-end
