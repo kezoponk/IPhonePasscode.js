@@ -13,9 +13,9 @@ Install via package.json:
 ```json
 "@kezoponk/iphonepasscode": "1.0.0" 
 ```
-Or download the dist/iphonepasscode.js manually
+Or download the dist/passcode.js manually
 ```html
-<script type="text/javascript" src="/static/scroller.js"></script>
+<script type="text/javascript" src="passcode.js"></script>
 ```
 
 ## Usage
