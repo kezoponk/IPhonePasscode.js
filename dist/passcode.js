@@ -241,4 +241,6 @@ class IPhonePasscode {
   }
 }
 
-module.exports = IPhonePasscode;
+if (typeof(module) == 'object') {
+  module.exports = IPhonePasscode;
+}
