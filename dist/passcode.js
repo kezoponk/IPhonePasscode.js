@@ -240,3 +240,5 @@ class IPhonePasscode {
     return rh(a)+rh(b)+rh(c)+rh(d);
   }
 }
+
+module.exports = IPhonePasscode;
