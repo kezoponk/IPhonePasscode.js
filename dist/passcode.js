@@ -149,7 +149,6 @@ class IPhonePasscode {
       }
     }
   }
-
   /**
    * @param {string} identifier - ID or class of div containing passcode
    * @param {Object} options - { password, length, color, title, title_color, pin_background, pin_border, animation, animationDuration, animationType }
@@ -241,6 +240,4 @@ class IPhonePasscode {
   }
 }
 
-if (typeof(module) == 'object') {
-  module.exports = IPhonePasscode;
-}
+if (typeof(module) == 'object') module.exports = Scroller;
