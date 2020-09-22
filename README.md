@@ -4,6 +4,22 @@ MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerato
 **A back-end is required to validate the passcode**, see examples bellow
 <br><br>
 
+## Installation
+Install from the command line:
+```shell
+$ npm install @kezoponk/iphonepasscode
+```
+Install via package.json:
+```json
+"@kezoponk/iphonepasscode": "1.0.0" 
+```
+Or download the dist/iphonepasscode.js manually
+```html
+<script type="text/javascript" src="/static/scroller.js"></script>
+```
+
+## Usage
+
 | Options | Description |
 | --- | --- |
 | doublemd5password <br> **Required** | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
