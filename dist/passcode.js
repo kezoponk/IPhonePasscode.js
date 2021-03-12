@@ -19,8 +19,8 @@ class IPhonePasscode {
                              border-radius:100%;
                              padding-bottom:14px;
                              float:left;
-                             position:relative;`
-                             +'background:'+this.options.background+';';
+                             position:relative;
+                             background:${this.options.background};`;
 
     const smallLettersArray = [ null, 'A B C', 'D E F', 'G H I', 'J K L', 'M N O', 'P Q R S', 'T U V', 'W X Y Z', null, '+', null ];
     // Append 10 buttons + 2 invisible
@@ -31,15 +31,15 @@ class IPhonePasscode {
 
       bigNumber.style.cssText = `margin:0;
                                  font-size:400%;
-                                 font-family: sf-regular, sans-serif;`
-                                 +'color:'+this.options.color+';';
+                                 font-family:sf-regular, sans-serif;
+                                 color:${this.options.color};`;
 
       smallLetters.style.cssText = `margin:0;
-                                    font-family: sf-regular, sans-serif;'
+                                    font-family:sf-regular, sans-serif;'
                                     font-weight:400;
                                     font-size:110%;
-                                    line-height:0;`
-                                    +'color:'+this.options.color+';';
+                                    line-height:0;
+                                    color:${this.options.color};`;
       // Default buttons
       let opacity = '1', margin = '9%';
 
@@ -63,9 +63,9 @@ class IPhonePasscode {
       }
       // Set style & small text depending on button position
       smallLetters.innerHTML = smallLettersArray[i];
-      passcodeButton.style.cssText = 'opacity:'+opacity+';'
-                                     +'margin-right:'+margin+';'
-                                     +baseButtonStyle;
+      passcodeButton.style.cssText = `opacity:${opacity};
+                                      margin-right:${margin};
+                                      ${baseButtonStyle}`;
 
       passcodeButton.appendChild(bigNumber);
       passcodeButton.appendChild(smallLetters);
@@ -81,9 +81,9 @@ class IPhonePasscode {
                              justify-content: center;
                              flex-wrap: wrap;
                              position: relative;
-                             text-align:center;`
-                             +'height:'+pinHeight+'px;'
-                             +'width:'+passcodeWidth+'px;';
+                             text-align:center;
+                             height:${pinHeight}px;
+                             width:${passcodeWidth}px;`;
 
     // Create title with entered text
     const title = document.createElement('h3');
@@ -93,8 +93,8 @@ class IPhonePasscode {
                           text-align:center;
                           font-family: sf-regular, sans-serif;
                           font-weight: 400;
-                          margin:0;`
-                          +'font-size:'+titleSize+'%;';
+                          margin:0;
+                          font-size:${titleSize}%;`;
 
     title.innerHTML = this.options.title;
     pinsDiv.appendChild(title);
@@ -103,13 +103,13 @@ class IPhonePasscode {
     for(var i = 0; i < this.options.length; i++) {
       let singlePin = document.createElement('div');
       singlePin.style.cssText = `height:20%;
-                                 width: 4.5%;
-                                 margin: 7px;
+                                 width:4.5%;
+                                 margin:7px;
                                  margin-top:0;
-                                 border-radius: 100%;
-                                 background: transparent;
-                                 position: relative;`
-                                 +'border: 2px solid '+this.options.pin_border+';';
+                                 border-radius:100%;
+                                 background:transparent;
+                                 position:relative;
+                                 border:2px solid ${this.options.pin_border};`;
       this.pins[i] = singlePin;
       pinsDiv.appendChild(singlePin);
     }
