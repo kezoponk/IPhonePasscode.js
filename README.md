@@ -66,6 +66,7 @@ if($_GET['pass'] == '1234') {
 - White buttons, black text
 - PHP used for back-end with a keychain session variable
 <br>
+
 ### Example 2 / 2 - with Python Django
 ```html
 <div class="index-password" id="iphonePasscode"></div>
