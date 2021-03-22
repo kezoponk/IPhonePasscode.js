@@ -2,6 +2,7 @@
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 **A back-end is required to validate the passcode**, see examples bellow
+<br>Password length is public & passed through a get parameter: a <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a> is recommended
 <br>
 
 ## Installation
@@ -24,7 +25,7 @@ Or download the dist/passcode.js manually
 | --- | --- |
 | doublemd5password <br> **Required** | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
 | length <br> **Required** | Length of password |
-| redirect <br> **Required** | Back-end file or directory to redirect if password is right |
+| redirect <br> **Required** | Back-end file or directory to redirect if password is right. Works with custom parameters |
 | background <br> **Required** | Button color |
 | color <br> **Required** | Color of button text and title text |
 | title | Text appearing above password pins <br>Default: Enter Password |
