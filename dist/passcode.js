@@ -163,8 +163,8 @@ class IPhonePasscode {
     if (options.pin_background == null) options.pin_background = options.color;
     if (options.pin_border == null) options.pin_border = options.color;
     if (options.animation == null) options.animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }';
-    if (options.animationDuration == null) options.animationDuration = '300ms';
-    if (options.animationType == null) options.animationType = 'linear';
+    if (options.animation_duration == null) options.animation_duration = '300ms';
+    if (options.animation_type == null) options.animation_duration = 'linear';
     this.options = options;
 
     // Init passcode that will exist inside div
