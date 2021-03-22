@@ -42,7 +42,7 @@ Or download the dist/passcode.js manually
 </center>
 <br><br>
 
-### Example #1 with PHP
+### Example 1 / 2 - with PHP
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
@@ -64,9 +64,8 @@ if($_GET['pass'] == '1234') {
 - Password is 1234
 - White buttons, black text
 - PHP used for back-end with a keychain session variable
-___
-
-### Example #2 with Python Django
+<br>
+### Example 2 / 2 - with Python Django
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
