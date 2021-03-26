@@ -3,7 +3,7 @@
  * @license MIT, https://opensource.org/licenses/MIT
  */
 class IPhonePasscode {
-  addStyle(styleString) {
+  injectStyle(styleString) {
     const style = document.createElement('style');
     style.textContent = styleString;
     document.head.append(style);
@@ -125,11 +125,11 @@ class IPhonePasscode {
       this.pins[countclick-1].style.background = this.options.pin_background;
     }
     // Press Animation
-    button.classList.remove('passcode-animation');
+    button.classList.remove('iphonepasscode-animation');
     button.offsetWidth;
-    button.classList.add('passcode-animation');
+    button.classList.add('iphonepasscode-animation');
 
-    if(this.options.length == countclick) {
+    if(countclick == this.options.length) {
       if(this.md5(this.md5(this.enteredPassword)) == this.options.doublemd5password) {
         // Success, a back-end system is required to validate again to avoid exploitation
         if(this.options.redirect.includes('?')) {
@@ -149,43 +149,51 @@ class IPhonePasscode {
       }
     }
   }
+
+  required(variable) {
+    throw new TypeError(variable);
+  }
   /**
    * @param {string} identifier - ID or class of div containing passcode
-   * @param {Object} options - { password, length, color, title, title_color, pin_background, pin_border, animation, animationDuration, animationType }
+   * @param {Object} options { password, length, color, title, title_color, pin_background, pin_border, animation, animation_duration, animation_type }
    */
-  constructor(identifier, options) {
+  constructor(identifier,{doublemd5password=this.required('doublemd5password'),
+                          length=this.required('length'),
+                          redirect=this.required('redirect'),
+                          background=this.required('background'),
+                          color=this.required('color'),
+                          title = 'Enter Password', 
+                          title_color = color,
+                          pin_background = color,
+                          pin_border = color,
+                          animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }',
+                          animation_duration = '300ms',
+                          animation_type = 'linear'}) {
+    
+    this.options = {'doublemd5password':doublemd5password,'length':length,'redirect':redirect,'background':background,'color':color,'title':title,'title_color':title_color,'pin_background':pin_background,'pin_border':pin_border,'animation':animation,'animation_duration':animation_duration,'animation_type':animation_type}
+    
     const div = document.querySelector(identifier);
     this.enteredPassword = '';
-
-    // Defaults
-    if (options.title == null) options.title = 'Enter Password';
-    if (options.title_color == null) options.title_color = options.color;
-    if (options.pin_background == null) options.pin_background = options.color;
-    if (options.pin_border == null) options.pin_border = options.color;
-    if (options.animation == null) options.animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }';
-    if (options.animation_duration == null) options.animation_duration = '300ms';
-    if (options.animation_type == null) options.animation_duration = 'linear';
-    this.options = options;
 
     // Init passcode that will exist inside div
     const passcode = document.createElement('div');
 
-    // Set width and height to make passcode fit perfectly
+    // Set width & height to assemble buttons the exact same dimensions as iphone
     let pinHeight = div.offsetHeight * 0.15,
         passcodeHeight = div.offsetHeight - pinHeight,
         passcodeWidth = passcodeHeight * 0.8144;
 
-    passcode.style.cssText = 'height:'+passcodeHeight+'px;'
-                             +'width:'+passcodeWidth+'px;'
-                             +'user-select: none';
+    passcode.style.cssText = `height:${passcodeHeight}px;
+                              width:${passcodeWidth}px;
+                              user-select: none`;
 
     this.appendEnteredPins(div, pinHeight, passcodeWidth);
     this.appendButtons(div, passcode);
 
     // Create keyframes animation to enable easy custom animations
-    this.addStyle(`@keyframes passcode-animation {`+options.animation+`}
-    button.passcode-animation {
-      animation: passcode-animation `+options.animationDuration+` 1 `+options.animationType+`;
+    this.injectStyle(`@keyframes iphonepasscode-animation {`+this.options.animation+`}
+    button.iphonepasscode-animation {
+      animation: iphonepasscode-animation `+this.options.animation_duration+` 1 `+this.options.animation_type+`;
     }
     /* Font originally downloaded from https://www.download-free-fonts.com/category/san-francisco-fonts */
     @font-face {

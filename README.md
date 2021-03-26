@@ -33,8 +33,8 @@ Or download the dist/passcode.js manually
 | pin_background | Filled pin background<br>Default: Same as 'color' |
 | pin_border | Empty pin color<br>Default: Same as 'color' |
 | animation | Button press keyframes animation<br>Default is same animation as the IPhone |
-| animationDuration | Animation duration<br>Default: 300ms |
-| animationType | linear, ease-in, ease-in-out... etc<br>Default:linear |
+| animation_duration | Animation duration<br>Default: 300ms |
+| animation_type | linear, ease-in, ease-in-out... etc<br>Default:linear |
 
 <p align="center">
   <code>
@@ -78,8 +78,8 @@ new IPhonePasscode('.index-password', {
                      background: 'gray',
                      color: 'white',
                      animation: '100% { transform: rotate(360deg); }',
-                     animationType: 'ease-out',
-                     animationDuration: '0.8s',
+                     animation_type: 'ease-out',
+                     animation_duration: '0.8s',
                      title: 'Enter Password To Login',
                      redirect: '/checkpasscode/'});
 ```
