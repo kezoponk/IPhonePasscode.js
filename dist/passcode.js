@@ -24,7 +24,7 @@ class IPhonePasscode {
 
     const smallLettersArray = [ null, 'A B C', 'D E F', 'G H I', 'J K L', 'M N O', 'P Q R S', 'T U V', 'W X Y Z', null, '+', null ];
     // Append 10 buttons + 2 invisible
-    for(var i = 0; i < 12; i++) {
+    for(var buttonIndex = 0; buttonIndex < 12; buttonIndex++) {
       let passcodeButton = document.createElement('button');
       let bigNumber = document.createElement('h1');
       let smallLetters = document.createElement('p');
@@ -45,25 +45,25 @@ class IPhonePasscode {
       let opacity = '1', margin = '9%';
 
       // Third button in a row: remove margin
-      if((i+1) / 3 % 1 == 0 && i != 0) {
+      if((buttonIndex+1) / 3 % 1 == 0 && buttonIndex != 0) {
         margin = 0;
       }
       // Invisible buttons that center the '0' button
-      if(i == 9 || i == 11) {
+      if(buttonIndex == 9 || buttonIndex == 11) {
         opacity = '0';
       }
       // Button 0
-      if(i == 10) {
+      if(buttonIndex == 10) {
         bigNumber.innerHTML = 0;
         passcodeButton.addEventListener("click", function() { this.buttonPressed(passcodeButton); }.bind(this, passcodeButton));
       }
       // Normal button
       else {
-        bigNumber.innerHTML = i+1;
+        bigNumber.innerHTML = buttonIndex+1;
         passcodeButton.addEventListener("click", function() { this.buttonPressed(passcodeButton); }.bind(this, passcodeButton));
       }
       // Set style & small text depending on button position
-      smallLetters.innerHTML = smallLettersArray[i];
+      smallLetters.innerHTML = smallLettersArray[buttonIndex];
       passcodeButton.style.cssText = `opacity:${opacity};
                                       margin-right:${margin};
                                       ${baseButtonStyle}`;
@@ -101,7 +101,7 @@ class IPhonePasscode {
     pinsDiv.appendChild(title);
 
     this.pins = [];
-    for(var i = 0; i < this.options.length; i++) {
+    for(var index = 0; index < this.options.length; index++) {
       let singlePin = document.createElement('div');
       singlePin.style.cssText = `height:20%;
                                  width:4.5%;
@@ -111,7 +111,7 @@ class IPhonePasscode {
                                  background:transparent;
                                  position:relative;
                                  border:2px solid ${this.options.pin_border};`;
-      this.pins[i] = singlePin;
+      this.pins[index] = singlePin;
       pinsDiv.appendChild(singlePin);
     }
     div.appendChild(pinsDiv);
@@ -142,8 +142,8 @@ class IPhonePasscode {
         // Delay visible reset with 500ms
         setTimeout(() => {
           // Reset each pin
-          for(var i = 0; i < this.options.length; i++) {
-            this.pins[i].style.background = "transparent";
+          for(var index = 0; index < this.options.length; index++) {
+            this.pins[index].style.background = "transparent";
           }
           this.enteredPassword = "";
         }, 500);
