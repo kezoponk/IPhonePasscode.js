@@ -38,7 +38,7 @@ Or download the dist/passcode.js manually
 
 <p align="center">
   <code>
-    new IPhonePasscode('#targetDiv', { <strong>Options</strong> });
+    new IPhonePasscode('targetDiv', { <strong>Options</strong> });
   </code>
 </center>
 <br><br>
