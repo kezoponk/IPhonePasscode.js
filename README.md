@@ -1,4 +1,4 @@
-<img width="200" align="right" alt="Skärmavbild 2021-03-27 kl  17 15 06" src="https://user-images.githubusercontent.com/40474222/112726901-00cb9700-8f20-11eb-8dd8-d73d9a8d3473.png">
+<img width="200" align="right" src="https://user-images.githubusercontent.com/40474222/112726901-00cb9700-8f20-11eb-8dd8-d73d9a8d3473.png">
 
 # IPhonePasscode.js
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode<br>
