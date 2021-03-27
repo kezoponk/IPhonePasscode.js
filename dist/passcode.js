@@ -9,7 +9,7 @@ class IPhonePasscode {
     document.head.append(style);
   }
 
-  appendButtons(div, passcode) {
+  appendButtons(div, passcode, passcodeWidth) {
     const baseButtonStyle = `height:22.3%;
                              width:27.3%;
                              margin-top: 0;
@@ -30,15 +30,16 @@ class IPhonePasscode {
       let smallLetters = document.createElement('p');
 
       bigNumber.style.cssText = `margin:0;
-                                 font-size:400%;
                                  font-family:sf-regular, sans-serif;
+                                 font-weight:lighter;
+                                 font-size:${passcodeWidth * 0.15}px;
                                  color:${this.options.color};`;
 
       smallLetters.style.cssText = `margin:0;
                                     font-family:sf-regular, sans-serif;'
-                                    font-weight:400;
-                                    font-size:110%;
+                                    font-weight:lighter;
                                     line-height:0;
+                                    font-size:${passcodeWidth * 0.04}px;
                                     color:${this.options.color};`;
       // Default buttons
       let opacity = '1', margin = '9%';
@@ -85,7 +86,7 @@ class IPhonePasscode {
                              height:${pinHeight}px;
                              width:${passcodeWidth}px;`;
 
-    // Create title with entered text
+    // Create the title with entered/default text
     const title = document.createElement('h3');
     let titleSize = (passcodeWidth * 0.7) / 2;
     title.style.cssText = `color:`+this.options.title_color+`;
@@ -188,7 +189,7 @@ class IPhonePasscode {
                               user-select: none`;
 
     this.appendEnteredPins(div, pinHeight, passcodeWidth);
-    this.appendButtons(div, passcode);
+    this.appendButtons(div, passcode, passcodeWidth);
 
     // Create keyframes animation to enable easy custom animations
     this.injectStyle(`@keyframes iphonepasscode-animation {`+this.options.animation+`}
