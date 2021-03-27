@@ -14,7 +14,7 @@ $ npm install @kezoponk/iphonepasscode
 ```
 Install via package.json:
 ```json
-"@kezoponk/iphonepasscode": "1.0.3" 
+"@kezoponk/iphonepasscode": "1.0.*" 
 ```
 Or download the dist/passcode.js manually
 ```html
