@@ -2,7 +2,7 @@
   "name": "@kezoponk/iphonepasscode",
   "version": "1.0.4",
   "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode",
-  "main": "dist/passcode.js",
+  "main": "dist/passcode",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
