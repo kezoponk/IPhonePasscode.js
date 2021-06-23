@@ -23,7 +23,8 @@ class IPhonePasscode {
                              background:${this.options.background};`;
 
     const smallLettersArray = [ null, 'A B C', 'D E F', 'G H I', 'J K L', 'M N O', 'P Q R S', 'T U V', 'W X Y Z', null, '+', null ];
-    // Append 10 buttons + 2 invisible
+    
+    // Append 10 buttons + 2 invisible on the left and right to zero
     for(var buttonIndex = 0; buttonIndex < 12; buttonIndex++) {
       let passcodeButton = document.createElement('button');
       let bigNumber = document.createElement('h1');
@@ -41,27 +42,28 @@ class IPhonePasscode {
                                     line-height:0;
                                     font-size:${passcodeWidth * 0.04}px;
                                     color:${this.options.color};`;
-      // Default buttons
+      // Default button
       let opacity = '1', margin = '9%';
 
-      // Third button in a row: remove margin
       if((buttonIndex+1) / 3 % 1 == 0 && buttonIndex != 0) {
+        // Third button in a row: remove margin
         margin = 0;
-      }
-      // Invisible buttons that center the '0' button
-      if(buttonIndex == 9 || buttonIndex == 11) {
+      } 
+      if(buttonIndex == 9 || buttonIndex == 11) { 
+        // Invisible buttons that center the '0' button
         opacity = '0';
-      }
-      // Button 0
+      } 
+      
       if(buttonIndex == 10) {
+        // Button 0
         bigNumber.innerHTML = 0;
-        passcodeButton.addEventListener("click", function() { this.buttonPressed(passcodeButton); }.bind(this, passcodeButton));
-      }
-      // Normal button
-      else {
+        passcodeButton.addEventListener("click", () => {this.buttonPressed(passcodeButton)});
+      } else {
+        // Normal button
         bigNumber.innerHTML = buttonIndex+1;
-        passcodeButton.addEventListener("click", function() { this.buttonPressed(passcodeButton); }.bind(this, passcodeButton));
+        passcodeButton.addEventListener("click", () => {this.buttonPressed(passcodeButton)});
       }
+
       // Set style & small text depending on button position
       smallLetters.innerHTML = smallLettersArray[buttonIndex];
       passcodeButton.style.cssText = `opacity:${opacity};
@@ -125,6 +127,7 @@ class IPhonePasscode {
     if (this.options.length >= countclick) {
       this.pins[countclick-1].style.background = this.options.pin_background;
     }
+
     // Press Animation
     button.classList.remove('iphonepasscode-animation');
     button.offsetWidth;
@@ -152,26 +155,26 @@ class IPhonePasscode {
   }
 
   required(variable) {
-    throw new TypeError(variable);
+    throw new Error(`Missing argument ${variable}`);
   }
   /**
    * @param {string} identifier - ID or class of div containing passcode
-   * @param {Object} options { password, length, color, title, title_color, pin_background, pin_border, animation, animation_duration, animation_type }
+   * @param {Object} options - { password, length, color, title, title_color, pin_background, pin_border, animation, animation_duration animation_type }
    */
-  constructor(identifier,{doublemd5password=this.required('doublemd5password'),
-                          length=this.required('length'),
-                          redirect=this.required('redirect'),
-                          background=this.required('background'),
-                          color=this.required('color'),
-                          title = 'Enter Password', 
-                          title_color = color,
-                          pin_background = color,
-                          pin_border = color,
-                          animation = '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }',
-                          animation_duration = '300ms',
-                          animation_type = 'linear'}) {
-    
-    this.options = {'doublemd5password':doublemd5password,'length':length,'redirect':redirect,'background':background,'color':color,'title':title,'title_color':title_color,'pin_background':pin_background,'pin_border':pin_border,'animation':animation,'animation_duration':animation_duration,'animation_type':animation_type}
+  constructor(identifier, options) {
+    options.doublemd5password = options.doublemd5password ? options.doublemd5password : this.required('doublemd5password'),
+    options.length = options.length ? options.length : this.required('length'),
+    options.redirect = options.redirect ? options.redirect : this.required('redirect'),
+    options.background = options.background ? options.background : this.required('background'),
+    options.color = options.color ? options.color : this.required('color'),
+    options.title = options.title ? options.title : 'Enter Password', 
+    options.title_color = options.title_color ? options.title_color : options.color,
+    options.pin_background = options.pin_background ? options.pin_background : options.color,
+    options.pin_border = options.pin_border ? options.pin_border : options.color,
+    options.animation = options.animation ? options.animation : '0% { filter:brightness(1); } 20% { filter:brightness(1.6); } 100% { filter:brightness(1); }',
+    options.animation_duration = options.animation_duration ? options.animation_duration : '300ms',
+    options.animation_type = options.animation_type ? options.animation_type : 'linear'
+    this.options = options;
     
     const div = document.querySelector(identifier);
     this.enteredPassword = '';
@@ -249,4 +252,4 @@ class IPhonePasscode {
   }
 }
 
-if (typeof(module) == 'object') module.exports = Scroller;
+if (typeof(module) == 'object') module.exports = IPhonePasscode;
