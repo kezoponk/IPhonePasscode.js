@@ -1,6 +1,6 @@
 {
   "name": "@kezoponk/iphonepasscode",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode",
   "main": "dist/ipasscode",
   "scripts": {
