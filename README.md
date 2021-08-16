@@ -10,6 +10,8 @@ MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgener
 <br>Passcode is 11+ digits long.
 <br>If passcode is 11- digits - leave md5passcode empty and use <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a>
 
+<br>
+
 ## Installation
 Install from the command line:
 ```shell
@@ -28,12 +30,10 @@ Or download the dist/ipasscode.js manually
 
 | Options | Description |
 | --- | --- |
-| doublemd5passcode | Leave empty if you wish to validate pin only in the specified redirect url/page - **Safer**
-<br>MD5 a numerical passcode twice 
-<br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br> |
-| length <br> **Required** | Length of passcode |
-| redirect <br> **Required** | Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
-| title | Text appearing above passcode pins <br>Default: Enter Password |
+| md5passcode |Leave empty if you wish to validate pin only in the specified redirect url/page - **Safer** |
+| length <br> **Required** |Length of passcode |
+| redirect <br> **Required** |Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
+| title |Text appearing above passcode pins <br>Default: Enter Password |
 
 <p align="center">
   <code>
@@ -55,7 +55,7 @@ Or download the dist/ipasscode.js manually
 
 **Use !important if nothing changes**
 
-<br><br>
+<br>
 
 ### Example - with PHP
 ```html
@@ -63,7 +63,7 @@ Or download the dist/ipasscode.js manually
 ```
 ```javascript
 new IPhonePasscode('#iphonePasscode', {
-                     doublemd5passcode: 'ec6a6536ca304edf844d1d248a4f08dc',
+                     md5passcode: 'ec6a6536ca304edf844d1d248a4f08dc',
                      length: '4',
                      redirect: '../php/keychain.php'
 });
