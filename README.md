@@ -1,10 +1,11 @@
 <img width="200" align="right" src="https://user-images.githubusercontent.com/40474222/112726901-00cb9700-8f20-11eb-8dd8-d73d9a8d3473.png">
 
 # IPhonePasscode.js
-IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode<br>
+IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode.<br>
 MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
-**A back-end is required to validate the passcode**, see examples bellow
-<br>Password length is public & passed through a get parameter: a <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a> is recommended
+**A back-end is required to validate the passcode**, see examples bellow.
+<br>Password length is public & passed through a get parameter: a <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a> is recommended.
+<br>Still not very safe even with csrf though... I don't recommend using this on anything big.
 <br>
 
 ## Installation
@@ -14,38 +15,45 @@ $ npm install @kezoponk/iphonepasscode
 ```
 Install via package.json:
 ```json
-"@kezoponk/iphonepasscode": "1.0.*" 
+"@kezoponk/iphonepasscode": "1.0.7" 
 ```
-Or download the dist/passcode.js manually
+Or download the dist/ipasscode.js manually
 ```html
-<script type="text/javascript" src="passcode.js"></script>
+<script type="text/javascript" src="ipasscode.js"></script>
 ```
 
 ## Usage
 
 | Options | Description |
 | --- | --- |
-| doublemd5password <br> **Required** | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc |
+| doublemd5password <br> | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br>**Leave empty if you wish to validate pin only in the specified redirect url/page** |
 | length <br> **Required** | Length of password |
-| redirect <br> **Required** | Back-end file or directory to redirect if password is right. Works with custom parameters |
-| background <br> **Required** | Button color |
-| color <br> **Required** | Color of button text and title text |
+| redirect <br> **Required** | Back-end file or directory to redirect if password is right. Works with custom parameters! |
 | title | Text appearing above password pins <br>Default: Enter Password |
-| title_color | Title text color<br>Default: Same as 'color' |
-| pin_background | Filled pin background<br>Default: Same as 'color' |
-| pin_border | Empty pin color<br>Default: Same as 'color' |
-| animation | Button press keyframes animation<br>Default is same animation as the IPhone |
-| animation_duration | Animation duration<br>Default: 300ms |
-| animation_type | linear, ease-in, ease-in-out... etc<br>Default:linear |
 
 <p align="center">
   <code>
     new IPhonePasscode('targetDiv', { <strong>Options</strong> });
   </code>
-</center>
+</p>
+
+<br>
+
+| CSS Classes for customization | 
+| --- |
+| ipasscode__press-animation  |
+| ipasscode__button |
+| ipasscode__button-big-number |
+| ipasscode__button-small-letters |
+| ipasscode__title |
+| ipasscode__pinsdiv |
+| ipasscode__pins |
+
+**Use !important if nothing changes**
+
 <br><br>
 
-### Example 1 / 2 - with PHP
+### Example - with PHP
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
@@ -53,9 +61,8 @@ Or download the dist/passcode.js manually
 new IPhonePasscode('#iphonePasscode', {
                      doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
                      length: '4',
-                     background: 'white',
-                     color: 'black',
-                     redirect: '../php/keychain.php'});
+                     redirect: '../php/keychain.php'
+});
 ```
 ```php
 if($_GET['pass'] == '1234') {
@@ -65,33 +72,28 @@ if($_GET['pass'] == '1234') {
 }
 ```
 - Password is 1234
-- White buttons, black text
 - PHP used for back-end with a keychain session variable
 <br>
 
-### Example 2 / 2 - with Python Django
+### Example - with Python Django
 ```html
 <div class="index-password" id="iphonePasscode"></div>
 ```
 ```javascript
 new IPhonePasscode('.index-password', {
-                     doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
                      length: '4',
-                     background: 'gray',
-                     color: 'white',
-                     animation: '100% { transform: rotate(360deg); }',
-                     animation_type: 'ease-out',
-                     animation_duration: '0.8s',
                      title: 'Enter Password To Login',
-                     redirect: '/checkpasscode/'});
+                     redirect: '/checkpasscode/'
+});
 ```
 ```python
 def login_func(request):
     if request.GET['pass'] is '1234':
         return redirect('/loggedin/')
+    else:
+        return redirect('/passcode-login/')
 ```
-- Password is 1234
-- Gray buttons, white text
+- Passcode is 1234
+- Passcode not exposed on client side
 - Modified title
-- Ease-out rotate animation for 0.8s
 - Python django used for back-end
