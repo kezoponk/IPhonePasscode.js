@@ -2,11 +2,13 @@
 
 # IPhonePasscode.js
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode.<br>
-MD5 hash your numerical password **twice**: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
+MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br>
 **A back-end is required to validate the passcode**, see examples bellow.
-<br>Password length is public & passed through a get parameter: a <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a> is recommended.
-<br>Still not very safe even with csrf though... I don't recommend using this on anything big.
-<br>
+
+## Security note
+**Don't use this on anything big unless:**
+<br>Passcode is 11+ digits long.
+<br>If passcode is 11- digits - leave md5passcode empty and use <a href="https://portswigger.net/web-security/csrf/tokens">csrf token</a>
 
 ## Installation
 Install from the command line:
@@ -26,10 +28,12 @@ Or download the dist/ipasscode.js manually
 
 | Options | Description |
 | --- | --- |
-| doublemd5password <br> | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br>**Leave empty if you wish to validate pin only in the specified redirect url/page** - Safer |
-| length <br> **Required** | Length of password |
-| redirect <br> **Required** | Back-end file or directory to redirect if password is right. Works with custom parameters! |
-| title | Text appearing above password pins <br>Default: Enter Password |
+| doublemd5passcode | Leave empty if you wish to validate pin only in the specified redirect url/page - **Safer**
+<br>MD5 a numerical passcode twice 
+<br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br> |
+| length <br> **Required** | Length of passcode |
+| redirect <br> **Required** | Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
+| title | Text appearing above passcode pins <br>Default: Enter Password |
 
 <p align="center">
   <code>
@@ -55,11 +59,11 @@ Or download the dist/ipasscode.js manually
 
 ### Example - with PHP
 ```html
-<div class="index-password" id="iphonePasscode"></div>
+<div class="index-passcode" id="iphonePasscode"></div>
 ```
 ```javascript
 new IPhonePasscode('#iphonePasscode', {
-                     doublemd5password: 'ec6a6536ca304edf844d1d248a4f08dc',
+                     doublemd5passcode: 'ec6a6536ca304edf844d1d248a4f08dc',
                      length: '4',
                      redirect: '../php/keychain.php'
 });
@@ -71,18 +75,18 @@ if($_GET['pass'] == '1234') {
   header('location: ../index.html');
 }
 ```
-- Password is 1234
+- Passcode is 1234
 - PHP used for back-end with a keychain session variable
 <br>
 
 ### Example - with Python Django
 ```html
-<div class="index-password" id="iphonePasscode"></div>
+<div class="index-passcode" id="iphonePasscode"></div>
 ```
 ```javascript
-new IPhonePasscode('.index-password', {
+new IPhonePasscode('.index-passcode', {
                      length: '4',
-                     title: 'Enter Password To Login',
+                     title: 'Enter Passcode To Login',
                      redirect: '/checkpasscode/'
 });
 ```
@@ -94,6 +98,6 @@ def login_func(request):
         return redirect('/passcode-login/')
 ```
 - Passcode is 1234
-- Passcode not exposed on client side
+- Passcode not exposed on client side, but reloads page each time 
 - Modified title
 - Python django used for back-end
