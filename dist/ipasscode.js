@@ -5,9 +5,9 @@
 
 /**
  * @typedef {object} config
- * @property {string} password - original password that have been md5 hashed **twice**, if left empty, redirect url will
+ * @property {string} md5passcode - original passcode that have been md5 hashed, if left empty, redirect url will
  * 								 be redirected to when button press count is equal to entered pin length
- * @property {number} length - password length
+ * @property {number} length - passcode length
  * @property {string} title - title string
  */
 
@@ -109,8 +109,8 @@ class IPhonePasscode {
 	}
 
 	buttonPressed(button) {
-		this.enteredPassword += button.children[0].innerHTML;
-		let countclick = this.enteredPassword.length;
+		this.enteredPasscode += button.children[0].innerHTML;
+		let countclick = this.enteredPasscode.length;
 
 		/* Fill pin */
 		if (this.config.length >= countclick) {
@@ -124,21 +124,21 @@ class IPhonePasscode {
 
 		if(countclick == this.config.length) {
 
-			if(this.md5(this.md5(this.enteredPassword)) == this.config.doublemd5password 
-				|| !this.config.doublemd5password) {
+			if(this.md5(this.enteredPasscode) == this.config.md5passcode
+				|| !this.config.md5passcode) {
 
 				// Success, a back-end system is required to validate again
 				if(this.config.redirect.includes('?')) {
-					window.location = this.config.redirect +"&pass="+ this.enteredPassword;
+					window.location = this.config.redirect +"&pass="+ this.enteredPasscode;
 				} else {
-					window.location = this.config.redirect +"?pass="+ this.enteredPassword;
+					window.location = this.config.redirect +"?pass="+ this.enteredPasscode;
 				}
 
 			} else {
 				// Delay reset with 500ms
 				setTimeout(() => {
 					this.pins.map(pin => pin.style.background = 'transparent');
-					this.enteredPassword = "";
+					this.enteredPasscode = "";
 				}, 500);
 			}
 		}
@@ -158,7 +158,7 @@ class IPhonePasscode {
 		
 		this.config = config;
 
-		this.enteredPassword = '';
+		this.enteredPasscode = '';
 		
 		const div = document.querySelector(identifier);
 
