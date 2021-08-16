@@ -26,7 +26,7 @@ Or download the dist/ipasscode.js manually
 
 | Options | Description |
 | --- | --- |
-| doublemd5password <br> | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br>**Leave empty if you wish to validate pin only in the specified redirect url/page** |
+| doublemd5password <br> | MD5 a numerical password twice <br> Example: 1234 > 81dc9bdb52d04dc20036dbd8313ed055 > ec6a6536ca304edf844d1d248a4f08dc<br>**Leave empty if you wish to validate pin only in the specified redirect url/page** - Safer |
 | length <br> **Required** | Length of password |
 | redirect <br> **Required** | Back-end file or directory to redirect if password is right. Works with custom parameters! |
 | title | Text appearing above password pins <br>Default: Enter Password |
