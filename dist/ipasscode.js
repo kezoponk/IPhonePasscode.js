@@ -11,15 +11,6 @@
  * @property {string} title - title string
  */
 
- const styles = { 
-	button: 'height:22.3%; width:27.3%; margin-top: 0; margin-left:0; margin-bottom:4.35%; border:none; border-radius:100%; padding-bottom:14px; float:left; position:relative;',
-	bigNumber: 'margin:0; font-family:sf-regular, sans-serif; font-weight:lighter;',
-	smallLetters: 'margin:0; font-family:sf-regular, sans-serif; font-weight:lighter; line-height:0;',	
-	pinsDiv: 'display: flex; justify-content: center; flex-wrap: wrap; position: relative; text-align:center;',
-	title: 'width:100%;text-align:center;font-family: sf-regular, sans-serif;font-weight: 400;margin:0;',
-	pin: 'height:20%; width:4.5%; margin:7px; margin-top:0; border-radius:100%; background:transparent; position:relative; border:1.5px solid black;'
-};
-
 class IPhonePasscode {
 	injectStyleInHeader(CSSCode) {
 		const style = document.createElement('style');
@@ -175,7 +166,7 @@ class IPhonePasscode {
 
 		div.appendChild( this.generateTitleAndPins(pinHeight, passcodeWidth) );
 		div.appendChild( this.generateButtons(passcode, passcodeWidth) );
-
+		
 		this.injectStyleInHeader(`
 			/* Font originally downloaded from https://www.download-free-fonts.com/category/san-francisco-fonts */
 			@font-face {
@@ -191,24 +182,53 @@ class IPhonePasscode {
 			button.ipasscode__press-animation {
 				animation: ipasscode__press-animation 300ms 1 linear;
 			}
-
-			h3.ipasscode__title {
-				${styles.title}
-			}
-			button.ipasscode__button {
-				${styles.button}
-			}
-			h1.ipasscode__button-big-number {
-				${styles.bigNumber}
-			}
-			p.ipasscode__button-small-letters {
-				${styles.smallLetters}
-			}
+			
 			div.ipasscode__pinsdiv {
-				${styles.pinsDiv}
+				display: flex; 
+				justify-content: center; 
+				flex-wrap: wrap; 
+				position: relative; 
+				text-align:center;
+			}
+			h3.ipasscode__title {
+				width:100%;
+				text-align:center;
+				font-family: sf-regular, sans-serif;
+				font-weight: 400;
+				margin:0;
 			}
 			div.ipasscode__pins {
-				${styles.pin}
+				height:20%; 
+				width:4.5%; 
+				margin:7px; 
+				margin-top:0; 
+				border-radius:100%; 
+				background:transparent; 
+				position:relative; 
+				border:1.5px solid black;
+			}
+			button.ipasscode__button {
+				height:22.3%; 
+				width:27.3%; 
+				margin-top: 0; 
+				margin-left:0; 
+				margin-bottom:4.35%; 
+				border:none; 
+				border-radius:100%; 
+				padding-bottom:14px; 
+				float:left; 
+				position:relative;
+			}
+			h1.ipasscode__button-big-number {
+				margin:0; 
+				font-family:sf-regular, sans-serif; 
+				font-weight:lighter;
+			}
+			p.ipasscode__button-small-letters {
+				margin:0; 
+				font-family:sf-regular, sans-serif; 
+				font-weight:lighter; 
+				line-height:0;
 			}
 		`);
 	}
