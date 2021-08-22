@@ -159,13 +159,16 @@ class IPhonePasscode {
 			passcodeWidth = passcodeHeight * 0.8144;
 
 		// Init passcode/numpad that will exist inside div, bellow title and pins
-		const passcode = document.createElement('div');
+		const passcodeArea = document.createElement('div');
 		passcode.style.cssText = `height:${passcodeHeight}px;
 								  width:${passcodeWidth}px;
 								  user-select: none`;
-
-		div.appendChild( this.generateTitleAndPins(pinHeight, passcodeWidth) );
-		div.appendChild( this.generateButtons(passcode, passcodeWidth) );
+		
+		const TitleAndPins = this.generateTitleAndPins(pinHeight, passcodeWidth);
+		const Passcode = this.generateButtons(passcodeArea, passcodeWidth);
+		
+		div.appendChild(TitleAndPins); // Title & pins should be above passcode
+		div.appendChild(Passcode);
 		
 		this.injectStyleInHeader(`
 			/* Font originally downloaded from https://www.download-free-fonts.com/category/san-francisco-fonts */
