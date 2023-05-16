@@ -1,10 +1,10 @@
 {
   "name": "@kezoponk/iphonepasscode",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode",
-  "main": "dist/ipasscode",
+  "main": "dist/iphonepasscode",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx -p typescript tsc"
   },
   "repository": {
     "type": "git",
