@@ -31,9 +31,9 @@ MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgener
 
 | Option / Prop | Description |
 | --- | --- |
-| md5passcode |Leave empty if you wish to validate pin only in the specified redirect url/page - **safer** |
+| md5passcode |Leave empty if you wish to validate pin only in the specified redirect url - **safer** |
+| redirect <br/> **Required** |Redirect if passcode is correct, or on each full length when md5passcode is empty. <br/> md5 passcode is sent in query param `pass` <br/>Works with custom parameters! |
 | length <br/> **Required** |Length of passcode |
-| redirect <br/> **Required** |Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
 | title |Text appearing above passcode pins <br/>Default: "Enter Passcode" |
 
 <br/>
