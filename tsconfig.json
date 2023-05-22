@@ -7,6 +7,9 @@
     "outDir": "dist",
     "strict": true,
     "declaration": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
   },
   "include": ["src"]
 }

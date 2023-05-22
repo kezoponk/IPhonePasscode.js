@@ -1,34 +1,22 @@
+import { IPhonePasscodeConfig } from './types';
+
 /**
  * @author Albin Eriksson, https://github.com/kezoponk
  * @license MIT, https://opensource.org/licenses/MIT
  */
-
-interface Config {
-  /**
-   * Original passcode that have been md5 hashed, if left empty, redirect url will
-   * be redirected to when button press count is equal to entered pin length
-   */
-  md5passcode?: string;
-  /**
-   * Passcode length
-   */
-  title?: string;
-  length: number;
-  redirect: string;
-}
-
 class IPhonePasscode {
-  config: Config;
+  config: IPhonePasscodeConfig;
   pins: HTMLDivElement[] = [];
   enteredPasscode = '';
+  targetElement: HTMLDivElement;
   
-  injectStyleInHeader(cssCode: string) {
+  private injectStyleInHeader(cssCode: string) {
     const style = document.createElement('style');
     style.textContent = cssCode;
     document.head.append(style);
   }
 
-  createButtonWithContent(
+  private createButtonWithContent(
     smallLettersText: string | null, 
     passcodeWidthPx: number
   ): [HTMLButtonElement, HTMLHeadingElement] {
@@ -38,19 +26,18 @@ class IPhonePasscode {
     const bigNumber = document.createElement('h1');
     bigNumber.style.fontSize = `${passcodeWidthPx * 0.15}px`;
     bigNumber.classList.add('ipasscode__button-big-number');
+    passcodeButton.appendChild(bigNumber);
 
     const smallLetters = document.createElement('p');
     smallLetters.style.fontSize = `${passcodeWidthPx * 0.04}px`;
     smallLetters.innerHTML = smallLettersText ?? '';
     smallLetters.classList.add('ipasscode__button-small-letters');
-
-    passcodeButton.appendChild(bigNumber);
     passcodeButton.appendChild(smallLetters);
 
     return [ passcodeButton, bigNumber ];
   }
 
-  generateButtons(passcode: HTMLDivElement, passcodeWidthPx: number) {
+  private generateButtons(passcode: HTMLDivElement, passcodeWidthPx: number) {
     const smallLettersArray = [
       null,
       'A B C',
@@ -72,7 +59,6 @@ class IPhonePasscode {
         smallLettersArray[buttonIndex], 
         passcodeWidthPx
       );
-      passcode.appendChild(passcodeButton);
 
       const isLastInRow = (buttonIndex + 1) / 3 % 1 === 0 && buttonIndex !== 0;
       passcodeButton.style.marginRight = isLastInRow
@@ -90,12 +76,14 @@ class IPhonePasscode {
       passcodeButton.addEventListener('click', 
         () => this.buttonPressed(passcodeButton)
       );
+
+      passcode.appendChild(passcodeButton);
     }
 
     return passcode;
   }
 
-  generateTitleAndPins(pinHeightPx: number, passcodeWidthPx: number) {
+  private generateTitleAndPins(pinHeightPx: number, passcodeWidthPx: number) {
     // Create div containing pins
     const pinsDiv = document.createElement('div');
     pinsDiv.style.height = `${pinHeightPx}px`;
@@ -105,9 +93,8 @@ class IPhonePasscode {
     // Create the title with entered/default text
     const title = document.createElement('h3');
     title.style.fontSize = `${(passcodeWidthPx * 0.7) / 2}%`;
-    title.innerHTML = this.config.title ?? 'Enter Password';
+    title.innerHTML = this.config.title ?? 'Enter Passcode';
     title.classList.add('ipasscode__title');
-
     pinsDiv.appendChild(title);
 
     this.pins = [];
@@ -121,7 +108,7 @@ class IPhonePasscode {
     return pinsDiv;
   }
 
-  buttonPressed(button: HTMLButtonElement) {
+  private buttonPressed(button: HTMLButtonElement) {
     this.enteredPasscode += button.children[0].innerHTML;
     let countclick = this.enteredPasscode.length;
 
@@ -140,12 +127,13 @@ class IPhonePasscode {
       return;
     }
 
-    if (!this.config.md5passcode || this.md5(this.enteredPasscode) === this.config.md5passcode) {
+    const md5EnteredPasscode = this.md5(this.enteredPasscode);
+    if (!this.config.md5passcode || md5EnteredPasscode === this.config.md5passcode) {
       // Success, a back-end is required to validate again
       if (this.config.redirect.includes('?')) {
-        window.location.href = `${this.config.redirect}&pass=${this.enteredPasscode}`;
+        window.location.href = `${this.config.redirect}&pass=${md5EnteredPasscode}`;
       } else {
-        window.location.href = `${this.config.redirect}?pass=${this.enteredPasscode}`;
+        window.location.href = `${this.config.redirect}?pass=${md5EnteredPasscode}`;
       }
 
     } else {
@@ -157,7 +145,15 @@ class IPhonePasscode {
     }
   }
 
-  constructor(targetElement: HTMLElement, config: Config) {
+  /**
+   * Restore target element to state before IPhonePasscode 
+   * Can't be undone without creating a new instance
+   */
+  public restore() {
+    this.targetElement.innerHTML = '';
+  }
+
+  constructor(targetElement: HTMLDivElement, config: IPhonePasscodeConfig) {
     if (config.length === undefined) {
       throw new Error('Missing required argument: length');
     }
@@ -166,6 +162,7 @@ class IPhonePasscode {
     }
     
     this.config = config;
+    this.targetElement = targetElement;
     
     // Set width & height to assemble buttons to the exact same dimensions as iOS
     let pinHeightPx = targetElement.offsetHeight * 0.15,
@@ -295,3 +292,5 @@ class IPhonePasscode {
 }
 
 export default IPhonePasscode;
+
+export type { IPhonePasscodeConfig }

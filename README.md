@@ -2,8 +2,7 @@
 
 # IPhonePasscode.js
 IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode.<br/>
-MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br/>
-**A back-end is required to validate the passcode**, see examples bellow.
+Use the main import for standard js, or import from `dist/react` for the included React component.
 
 
 ## Security note
@@ -20,19 +19,22 @@ $ npm install @kezoponk/iphonepasscode
 ```
 Install via package.json:
 ```json
-"@kezoponk/iphonepasscode": "1.1.0" 
+"@kezoponk/iphonepasscode": "1.1.1" 
 ```
 
 <br/>
 
 ## Usage
 
-| Option | Description |
+MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgenerator.com </a><br/>
+**A back-end is required to validate the passcode**, see examples bellow.
+
+| Option / Prop | Description |
 | --- | --- |
 | md5passcode |Leave empty if you wish to validate pin only in the specified redirect url/page - **safer** |
 | length <br/> **Required** |Length of passcode |
 | redirect <br/> **Required** |Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
-| title |Text appearing above passcode pins <br/>Default: "Enter Password" |
+| title |Text appearing above passcode pins <br/>Default: "Enter Passcode" |
 
 <p align="center">
   <code>new IPhonePasscode(Element, { <strong>Options</strong> });</code>
@@ -54,7 +56,7 @@ Install via package.json:
 
 <br/>
 
-### Example - with PHP
+### Example with standard JS and PHP backend
 ```html
 <div id="iphonePasscode" />
 ```
@@ -63,12 +65,12 @@ new IPhonePasscode(
   document.getElementById('iphonePasscode'), {
     md5passcode: 'ec6a6536ca304edf844d1d248a4f08dc',
     length: '4',
-    redirect: '../php/keychain.php'
+    redirect: 'keychain.php'
   }
 );
 ```
 ```php
-if($_GET['pass'] == '1234') {
+if($_GET['pass'] == md5('1234')) {
   session_start();
   $_SESSION['keychain'] = True;
   header('location: ../index.html');
@@ -79,27 +81,8 @@ if($_GET['pass'] == '1234') {
 
 <br/>
 
-### Example - with Python Django
-```html
-<div id="iphonePasscode" />
+### Example with React
+```jsx
+<IPhonePasscode length="4" title="Enter Passcode To Login" redirect="/checkpasscode">
 ```
-```javascript
-new IPhonePasscode(
-  document.getElementById('iphonePasscode'), {
-    length: '4',
-    title: 'Enter Passcode To Login',
-    redirect: '/checkpasscode/'
-  }
-);
-```
-```python
-def login_func(request):
-    if request.GET['pass'] is '1234':
-        return redirect('/loggedin/')
-    else:
-        return redirect('/passcode-login/')
-```
-- Passcode is 1234
-- Passcode not exposed on client side, but reloads page each time 
-- Modified title
-- Python django used for back-end
+- Passcode not exposed on client side, causing it reload page on each try 

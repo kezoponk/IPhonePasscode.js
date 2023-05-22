@@ -1,10 +1,10 @@
 {
   "name": "@kezoponk/iphonepasscode",
-  "version": "1.1.0",
-  "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the IPhone pin passcode",
+  "version": "1.1.1",
+  "description": "IPhonePasscode creates very easily a highly customizable and functional copy of the iconic IPhone pin passcode",
   "main": "dist/iphonepasscode",
   "scripts": {
-    "build": "npx -p typescript tsc"
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,13 @@
     "authorization",
     "authorize"
   ],
+  "peerDependencies": {
+    "react": ">=16.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "@types/react": ">=16.14.8"
+  },
   "author": "Albin Eriksson",
   "license": "MIT",
   "bugs": {

@@ -14,11 +14,11 @@ class IPhonePasscode {
         const bigNumber = document.createElement('h1');
         bigNumber.style.fontSize = `${passcodeWidthPx * 0.15}px`;
         bigNumber.classList.add('ipasscode__button-big-number');
+        passcodeButton.appendChild(bigNumber);
         const smallLetters = document.createElement('p');
         smallLetters.style.fontSize = `${passcodeWidthPx * 0.04}px`;
         smallLetters.innerHTML = smallLettersText !== null && smallLettersText !== void 0 ? smallLettersText : '';
         smallLetters.classList.add('ipasscode__button-small-letters');
-        passcodeButton.appendChild(bigNumber);
         passcodeButton.appendChild(smallLetters);
         return [passcodeButton, bigNumber];
     }
@@ -40,7 +40,6 @@ class IPhonePasscode {
         // Append 10 buttons + 1 invisible on the left to zero
         for (let buttonIndex = 0; buttonIndex < 11; buttonIndex++) {
             const [passcodeButton, bigNumber] = this.createButtonWithContent(smallLettersArray[buttonIndex], passcodeWidthPx);
-            passcode.appendChild(passcodeButton);
             const isLastInRow = (buttonIndex + 1) / 3 % 1 === 0 && buttonIndex !== 0;
             passcodeButton.style.marginRight = isLastInRow
                 ? 'unset'
@@ -52,6 +51,7 @@ class IPhonePasscode {
             }
             bigNumber.innerHTML = buttonIndex !== 10 ? `${buttonIndex + 1}` : '0';
             passcodeButton.addEventListener('click', () => this.buttonPressed(passcodeButton));
+            passcode.appendChild(passcodeButton);
         }
         return passcode;
     }
@@ -65,7 +65,7 @@ class IPhonePasscode {
         // Create the title with entered/default text
         const title = document.createElement('h3');
         title.style.fontSize = `${(passcodeWidthPx * 0.7) / 2}%`;
-        title.innerHTML = (_a = this.config.title) !== null && _a !== void 0 ? _a : 'Enter Password';
+        title.innerHTML = (_a = this.config.title) !== null && _a !== void 0 ? _a : 'Enter Passcode';
         title.classList.add('ipasscode__title');
         pinsDiv.appendChild(title);
         this.pins = [];
@@ -92,13 +92,14 @@ class IPhonePasscode {
         if (countclick !== this.config.length) {
             return;
         }
-        if (!this.config.md5passcode || this.md5(this.enteredPasscode) === this.config.md5passcode) {
+        const md5EnteredPasscode = this.md5(this.enteredPasscode);
+        if (!this.config.md5passcode || md5EnteredPasscode === this.config.md5passcode) {
             // Success, a back-end is required to validate again
             if (this.config.redirect.includes('?')) {
-                window.location.href = `${this.config.redirect}&pass=${this.enteredPasscode}`;
+                window.location.href = `${this.config.redirect}&pass=${md5EnteredPasscode}`;
             }
             else {
-                window.location.href = `${this.config.redirect}?pass=${this.enteredPasscode}`;
+                window.location.href = `${this.config.redirect}?pass=${md5EnteredPasscode}`;
             }
         }
         else {
@@ -108,6 +109,13 @@ class IPhonePasscode {
                 this.enteredPasscode = '';
             }, 500);
         }
+    }
+    /**
+     * Restore target element to state before IPhonePasscode
+     * Can't be undone without creating a new instance
+     */
+    restore() {
+        this.targetElement.innerHTML = '';
     }
     constructor(targetElement, config) {
         this.pins = [];
@@ -119,13 +127,14 @@ class IPhonePasscode {
             throw new Error('Missing required argument: redirect');
         }
         this.config = config;
+        this.targetElement = targetElement;
         // Set width & height to assemble buttons to the exact same dimensions as iOS
-        let pinHeight = targetElement.offsetHeight * 0.15, passcodeHeight = targetElement.offsetHeight - pinHeight, passcodeWidth = passcodeHeight * 0.8144;
+        let pinHeightPx = targetElement.offsetHeight * 0.15, passcodeHeightPx = targetElement.offsetHeight - pinHeightPx, passcodeWidthPx = passcodeHeightPx * 0.8144;
         // Create passcode/numpad that will exist inside div below title and pins
         const passcodeArea = document.createElement('div');
-        passcodeArea.style.cssText = `height:${passcodeHeight}px;width:${passcodeWidth}px;user-select:none`;
-        const titleAndPins = this.generateTitleAndPins(pinHeight, passcodeWidth);
-        const passcode = this.generateButtons(passcodeArea, passcodeWidth);
+        passcodeArea.style.cssText = `height:${passcodeHeightPx}px;width:${passcodeWidthPx}px;user-select:none`;
+        const titleAndPins = this.generateTitleAndPins(pinHeightPx, passcodeWidthPx);
+        const passcode = this.generateButtons(passcodeArea, passcodeWidthPx);
         targetElement.appendChild(titleAndPins);
         targetElement.appendChild(passcode);
         this.injectStyleInHeader(`
