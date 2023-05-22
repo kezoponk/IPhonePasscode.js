@@ -36,13 +36,9 @@ MD5 hash your passcode: <a href="https://www.md5hashgenerator.com"> md5hashgener
 | redirect <br/> **Required** |Back-end file or directory to redirect if passcode is right. Works with custom parameters! |
 | title |Text appearing above passcode pins <br/>Default: "Enter Passcode" |
 
-<p align="center">
-  <code>new IPhonePasscode(Element, { <strong>Options</strong> });</code>
-</p>
-
 <br/>
 
-| CSS Classes for customization | 
+| CSS classes for customization | 
 | --- |
 | ipasscode__press-animation  |
 | ipasscode__button |
@@ -83,6 +79,6 @@ if($_GET['pass'] == md5('1234')) {
 
 ### Example with React
 ```jsx
-<IPhonePasscode length="4" title="Enter Passcode To Login" redirect="/checkpasscode">
+<IPhonePasscode length={4} title="Enter Passcode To Login" redirect="/checkpasscode">
 ```
 - Passcode not exposed on client side, causing it reload page on each try 
