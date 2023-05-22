@@ -1,2 +1,5 @@
+/node_modules
+.DS_Store
 src/
 .tsconfig.json
+package-lock.json
